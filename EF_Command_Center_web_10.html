@@ -1,0 +1,1069 @@
+<meta charset="utf-8">
+<title>EF Command</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d3461">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EF Command">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADG0lEQVR4nO3dsYuXdRzAcY2S+gucDloaGiSHg/sHRAosMdRwOTh0SEh0aIkijshJHKRAFxcXUYfAq3AQWjtcDoIIHETEwSGIhoZqaAjiqHvr/bjfc8/97PXafs/9eJ7vA28+PDzP7+F2z80v7YKNvDD2Ati5xEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQXhx07z/c+WzPS8MeYio+ufjVrW/vbfinmTiFX379beHI51PfrclBEgdJHCRxkIa91Nr35qcbbl/7ZvmVl/dsfj/vnbm89uOjKS1q14m3F5bPHd7kl6d1Cu9/fO2773/a/Pef7uurZ197de+09lZMDpI4SOIgiYMkDpI4SOIgiYO00583DuH6yur1ldWxV7Elh05e2oajmBwkcZDEQRIH6fm8IH3nwP4LHx1fv+UpPwTcmW5+efqN1+f++fj7H3/W8+HhmBwkcZDEQRIHSRwkcZDEQZqN+xw3vjg99hK26sr5xbGXMDGTgyQOkjhI4iDNxgXppK9D/vfB2+gmfR3yXw/eRmFykMRBEgdJHCRxkMRBEgdpNu5zTOr23bXbd9fGXsWWHP/g8thLMDlo4iCJgyQOkjhI4iCJgyQO0vN5E+yZzn/47tG35tdvObh48eHjn8daz85kcpDEQRIHSRwkcZDEQRIHSRyk3XPzS8PtfSb+nfPf6ibY9pzCoVOX7j94MvRRJmVykMRBEgdJHKRhL0iZaSYHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRykbXqp5Nbi6vYc6P/j2LWFoQ9hcpDEQRIHSRwkcZDEQfLGG8nkIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEh/ASVbXdg3udVpAAAAAElFTkSuQmCC">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADG0lEQVR4nO3dsYuXdRzAcY2S+gucDloaGiSHg/sHRAosMdRwOTh0SEh0aIkijshJHKRAFxcXUYfAq3AQWjtcDoIIHETEwSGIhoZqaAjiqHvr/bjfc8/97PXafs/9eJ7vA28+PDzP7+F2z80v7YKNvDD2Ati5xEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQXhx07z/c+WzPS8MeYio+ufjVrW/vbfinmTiFX379beHI51PfrclBEgdJHCRxkIa91Nr35qcbbl/7ZvmVl/dsfj/vnbm89uOjKS1q14m3F5bPHd7kl6d1Cu9/fO2773/a/Pef7uurZ197de+09lZMDpI4SOIgiYMkDpI4SOIgiYO00583DuH6yur1ldWxV7Elh05e2oajmBwkcZDEQRIH6fm8IH3nwP4LHx1fv+UpPwTcmW5+efqN1+f++fj7H3/W8+HhmBwkcZDEQRIHSRwkcZDEQZqN+xw3vjg99hK26sr5xbGXMDGTgyQOkjhI4iDNxgXppK9D/vfB2+gmfR3yXw/eRmFykMRBEgdJHCRxkMRBEgdpNu5zTOr23bXbd9fGXsWWHP/g8thLMDlo4iCJgyQOkjhI4iCJgyQO0vN5E+yZzn/47tG35tdvObh48eHjn8daz85kcpDEQRIHSRwkcZDEQRIHSRyk3XPzS8PtfSb+nfPf6ibY9pzCoVOX7j94MvRRJmVykMRBEgdJHKRhL0iZaSYHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRykbXqp5Nbi6vYc6P/j2LWFoQ9hcpDEQRIHSRwkcZDEQfLGG8nkIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEh/ASVbXdg3udVpAAAAAElFTkSuQmCC">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=DM+Sans:wght@400;500;700&display=swap');
+  :root{
+    --ink:#18271f;--ink-soft:#566b5f;--paper:#edf0ec;--card:#fcfdfb;--line:#d7e0d8;--gold-l:#e0a567;
+    --navy:#13433a;--navy-d:#0d342c;--gold:#c47d3a;--teal:#2f6f6b;--rose:#a8443b;--green:#3f7d52;
+    --shadow:0 10px 30px -14px rgba(13,52,44,.32)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--paper)}
+  .app{display:flex;min-height:600px}
+  /* sidebar */
+  .side{width:210px;background:linear-gradient(180deg,var(--navy),var(--navy-d));color:#fff;flex-shrink:0;padding:20px 0}
+  .side .logo{padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.13)}
+  .side .logo h1{font-family:'Fraunces',serif;font-weight:900;font-size:18px;margin:0;line-height:1.15}
+  .side .logo .t{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l,#e7b94e);margin-top:7px;font-weight:700;opacity:.95}
+  .office{padding:12px 16px 4px;display:flex;gap:6px}
+  .office button{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.72);font-family:'DM Sans';font-weight:700;font-size:11.5px;padding:7px 0;border-radius:8px;cursor:pointer;letter-spacing:.03em}
+  .office button.on{background:var(--gold);color:#15241c;border-color:var(--gold)}
+  .office button:hover{color:#fff}
+  .office button.on:hover{color:#15241c}
+  .side nav{margin-top:14px;display:flex;flex-direction:column}
+  .side nav button{display:flex;align-items:center;gap:10px;background:none;border:none;color:rgba(255,255,255,.78);
+    font-family:'DM Sans';font-weight:600;font-size:13.5px;text-align:left;padding:10px 20px;cursor:pointer;border-left:3px solid transparent;transition:.13s}
+  .side nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+  .side nav button.active{background:rgba(255,255,255,.10);color:#fff;border-left-color:var(--gold)}
+  .side nav .ico{width:16px;text-align:center;opacity:.9}
+  .side .foot{padding:16px 20px 0;font-size:10.5px;color:rgba(255,255,255,.45);margin-top:10px;border-top:1px solid rgba(255,255,255,.10)}
+  /* main */
+  .main{flex:1;padding:24px 26px 60px;overflow-x:hidden;background:
+     radial-gradient(700px 360px at 95% -10%,rgba(200,146,42,.10),transparent 60%),var(--paper)}
+  .ph{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+  .ph h2{font-family:'Fraunces',serif;font-weight:900;font-size:24px;margin:0;letter-spacing:-.5px}
+  .ph .date{font-size:12px;color:var(--ink-soft)}
+  .panel{display:none}.panel.show{display:block;animation:f .22s ease}
+  @keyframes f{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  /* cards/kpis */
+  .kpis{display:grid;gap:13px;margin-bottom:18px}
+  .k5{grid-template-columns:repeat(5,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k3{grid-template-columns:repeat(3,1fr)}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gold)}
+  .kpi.r::before{background:var(--rose)}.kpi.g::before{background:var(--green)}.kpi.t::before{background:var(--teal)}.kpi.n::before{background:var(--navy)}
+  .kpi .l{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .kpi .v{font-family:'Fraunces',serif;font-weight:900;font-size:25px;margin-top:6px}
+  .kpi .s{font-size:11px;color:var(--ink-soft);margin-top:3px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:16px}
+  .card h3{font-family:'Fraunces',serif;font-weight:600;font-size:15.5px;margin:0;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .bd{padding:14px 16px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form{display:flex;gap:8px;flex-wrap:wrap;align-items:end;padding:13px 16px}
+  .fld{display:flex;flex-direction:column;gap:4px}
+  .fld label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  input,select{font-family:'DM Sans';font-size:13px;padding:8px 9px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:none;border-color:var(--gold)}
+  .btn{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:9px 15px;font-weight:700;font-size:13px;cursor:pointer}
+  .btn:hover{background:var(--navy-d)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;padding:9px 12px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);background:#fbf7ee}
+  td{padding:9px 12px;border-bottom:1px solid #efe8d8;vertical-align:middle}
+  tr:hover td{background:#fcf9f1}
+  .del{background:none;border:none;color:var(--rose);cursor:pointer;font-size:15px;opacity:.5}.del:hover{opacity:1}
+  .pill{display:inline-block;padding:3px 8px;border-radius:18px;font-size:10.5px;font-weight:700}
+  .p-hi{background:#f6dcd8;color:var(--rose)}.p-md{background:#f6ead0;color:#9a6b12}.p-lo{background:#dceadf;color:var(--green)}
+  .s-done{background:#dceadf;color:var(--green)}.s-prog{background:#d6e2ef;color:var(--navy)}.s-todo{background:#eee7d6;color:var(--ink-soft)}
+  .src{background:#f0ead9;color:var(--ink-soft)}
+  select.inline{padding:5px 7px;border-radius:16px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--line)}
+  .days{font-family:'Fraunces',serif;font-weight:900;font-size:14px}
+  .d-red{color:var(--rose)}.d-amber{color:var(--gold)}.d-green{color:var(--green)}
+  .empty{padding:18px;text-align:center;color:var(--ink-soft);font-size:12.5px}
+  .tfilter{width:100%;max-width:240px;margin:2px 16px 10px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-family:'DM Sans';font-size:12.5px;background:#fff;color:var(--ink)}
+  .tfilter::placeholder{color:var(--ink-soft)}
+  .tfilter:focus{outline:none;border-color:var(--gold)}
+  .tg{font-family:'DM Sans';font-weight:700;font-size:12px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);padding:6px 12px;border-radius:18px;cursor:pointer;margin-left:6px}
+  .tg.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:9px 0}
+  .row2 label{font-size:12.5px;color:var(--ink-soft)}.row2 input{width:140px;text-align:right}
+  .verdict{border-radius:13px;padding:16px 18px;margin-bottom:16px;color:#fff;box-shadow:var(--shadow)}
+  .verdict.green{background:linear-gradient(120deg,#3f7d52,#2f6f6b)}.verdict.amber{background:linear-gradient(120deg,#c8922a,#a8722a)}.verdict.red{background:linear-gradient(120deg,#a8443b,#7e2f2f)}
+  .verdict .vt{font-family:'Fraunces',serif;font-weight:900;font-size:19px;margin:0}.verdict .vs{font-size:13px;margin-top:6px;opacity:.95;line-height:1.5}
+  .mini{font-size:12.5px;list-style:none;padding:13px 16px;margin:0}.mini li{margin:7px 0;display:flex;justify-content:space-between;gap:10px}
+  .mini .meta{color:var(--ink-soft);font-size:11px}
+  .lib h4{font-family:'Fraunces',serif;font-size:15px;margin:16px 0 7px}
+  .lib p,.lib li{font-size:13px;line-height:1.6;color:#28344a}
+  .leak{background:#f6dcd8;border:1px solid #e3b3ad;border-radius:10px;padding:10px 12px;font-size:11.5px;color:#7e2f2f;margin-top:10px;line-height:1.5}
+  .copy{background:#f3eee1;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:12px;line-height:1.55;white-space:pre-wrap;margin:8px 0;color:#28344a}
+  .menu-btn{display:none}
+  @media(max-width:760px){
+    .app{flex-direction:column}.side{width:100%;padding:14px 0}
+    .side nav{flex-direction:row;flex-wrap:wrap;gap:2px;padding:0 10px}.side nav button{padding:7px 11px;border-left:none;border-radius:18px;font-size:12px}
+    .side nav button.active{border-left:none;background:rgba(255,255,255,.18)}.side .foot{display:none}
+    .kpis.k5,.kpis.k4{grid-template-columns:repeat(2,1fr)}.kpis.k3{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="app">
+  <aside class="side">
+    <div class="logo"><h1>Advanced<br>Pathways</h1><div class="t">EF · CEO Operating System</div></div>
+    <div class="office" id="office">
+      <button data-o="algiers" class="on">Algiers</button>
+      <button data-o="oran">Oran</button>
+    </div>
+    <nav id="nav">
+      <button data-t="home" class="active"><span class="ico">◆</span> Home</button>
+      <button data-t="pipe"><span class="ico">▣</span> Pipeline</button>
+      <button data-t="visa"><span class="ico">✈</span> Visa</button>
+      <button data-t="tasks"><span class="ico">✓</span> Tasks</button>
+      <button data-t="dead"><span class="ico">⏱</span> Deadlines</button>
+      <button data-t="part"><span class="ico">◎</span> Partners</button>
+      <button data-t="fin"><span class="ico">₪</span> Finance</button>
+      <button data-t="rev"><span class="ico">€</span> Commissions</button>
+      <button data-t="kpi"><span class="ico">▲</span> KPIs</button>
+      <button data-t="hr"><span class="ico">☷</span> HR</button>
+      <button data-t="school"><span class="ico">✑</span> School</button>
+      <button data-t="mkt"><span class="ico">◈</span> Marketing</button>
+      <button data-t="surv"><span class="ico">❤</span> Survival</button>
+      <button data-t="lib"><span class="ico">▤</span> Library</button>
+    </nav>
+    <div class="foot">Private to Salim · saves automatically</div>
+  </aside>
+
+  <main class="main">
+    <!-- HOME -->
+    <section class="panel show" id="home">
+      <div class="ph"><h2>Executive Dashboard</h2><div class="date" id="today"></div></div>
+      <div class="kpis k5">
+        <div class="kpi r"><div class="l">Urgent deadlines</div><div class="v" id="h-urgent">0</div><div class="s">next 14 days</div></div>
+        <div class="kpi n"><div class="l">Open tasks</div><div class="v" id="h-tasks">0</div><div class="s" id="h-tasks-hi">0 high</div></div>
+        <div class="kpi t"><div class="l">Pipeline</div><div class="v" id="h-pipe">€0</div><div class="s" id="h-conv">0% conv.</div></div>
+        <div class="kpi g"><div class="l">Net cash</div><div class="v" id="h-cash">0</div><div class="s">DZD logged</div></div>
+        <div class="kpi"><div class="l">Runway</div><div class="v" id="h-run">—</div><div class="s" id="h-run-s">enter in Survival</div></div>
+      </div>
+      <div class="two">
+        <div class="card"><h3>🔴 What needs you next</h3><ul class="mini" id="h-next"></ul></div>
+        <div class="card"><h3>Partner watch</h3><ul class="mini" id="h-part"></ul></div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="panel" id="pipe">
+      <div class="ph"><h2>Sales Pipeline</h2></div>
+      <div class="kpis k4">
+        <div class="kpi"><div class="l">Total leads</div><div class="v" id="p-total">0</div></div>
+        <div class="kpi n"><div class="l">Conversion</div><div class="v" id="p-conv">0%</div></div>
+        <div class="kpi t"><div class="l">Open pipeline</div><div class="v" id="p-open">€0</div></div>
+        <div class="kpi g"><div class="l">Closed won</div><div class="v" id="p-won">€0</div><div class="s" id="p-wonc">0</div></div>
+      </div>
+      <div class="card"><h3>Add lead</h3><div class="form">
+        <div class="fld"><label>Name</label><input id="pl-name" placeholder="Student/parent"></div>
+        <div class="fld"><label>Contact</label><input id="pl-contact" placeholder="+213…"></div>
+        <div class="fld"><label>Source</label><select id="pl-src"><option>Open Day</option><option>BAC season</option><option>B2B school</option><option>Referral</option><option>Social/DM</option><option>Walk-in</option></select></div>
+        <div class="fld"><label>Program</label><select id="pl-prog">
+          <option data-v="0">ILS (Intensive Language)</option><option data-v="0">APP (Academic Prep)</option><option data-v="0">HULT Business School</option>
+          <option data-v="0">EF Academy</option><option data-v="0">EF Language Abroad</option><option data-v="0">Undecided</option></select></div>
+        <div class="fld"><label>Value €</label><input id="pl-val" type="number" value="0"></div>
+        <div class="fld"><label>Owner</label><select id="pl-owner"><option>Youcef</option><option>Mohammed</option><option>Zineb</option><option>Nassima</option><option>Feriel</option><option>Dounia</option><option>Sarah</option></select></div>
+        <button class="btn" id="pl-add">+ Add</button>
+      </div></div>
+      <div class="card"><h3>Leads</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Lead</th><th>Source</th><th>Program</th><th>Owner</th><th>Value</th><th>Stage</th><th></th></tr></thead>
+        <tbody id="pl-rows"></tbody></table></div><div class="empty" id="pl-empty">No leads yet.</div></div>
+    </section>
+
+    <!-- VISA / STUDENT CASES -->
+    <section class="panel" id="visa">
+      <div class="ph"><h2>Visa Follow-up</h2></div>
+      <div class="kpis k5">
+        <div class="kpi n"><div class="l">Total students</div><div class="v" id="vc-total">0</div></div>
+        <div class="kpi g"><div class="l">Visas approved</div><div class="v" id="vc-yes">0</div><div class="s">answer: Yes</div></div>
+        <div class="kpi r"><div class="l">Visas refused</div><div class="v" id="vc-no">0</div><div class="s">answer: No</div></div>
+        <div class="kpi t"><div class="l">Pending</div><div class="v" id="vc-pend">0</div><div class="s">awaiting answer</div></div>
+        <div class="kpi"><div class="l">Approval rate</div><div class="v" id="vc-rate">—</div><div class="s">of answered</div></div>
+      </div>
+      <div class="card"><h3>Add visa follow-up</h3>
+        <div class="form">
+          <div class="fld"><label>Destination</label><input id="vc-dest" placeholder="Spain / UK / Japan…"></div>
+          <div class="fld"><label>Number of students</label><input id="vc-num" type="number" min="0" placeholder="0"></div>
+          <div class="fld"><label>Visa answer</label><select id="vc-ans"><option>Pending</option><option>Yes</option><option>No</option></select></div>
+          <div class="fld" style="flex:2"><label>Note (optional)</label><input id="vc-note" placeholder="intake, batch, remark…"></div>
+          <button class="btn" id="vc-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Destination</th><th>Students</th><th>Visa answer</th><th>Note</th><th></th></tr></thead>
+          <tbody id="vc-rows"></tbody></table></div><div class="empty" id="vc-empty">No visa follow-ups yet.</div>
+      </div>
+    </section>
+
+    <!-- TASKS -->
+    <section class="panel" id="tasks">
+      <div class="ph"><h2>Tasks &amp; Decisions</h2></div>
+      <div class="card"><h3>Add</h3><div class="form">
+        <div class="fld" style="flex:2"><label>What</label><input id="t-title" placeholder="e.g. Sign IULM agreement"></div>
+        <div class="fld"><label>Owner</label><input id="t-owner" value="Salim"></div>
+        <div class="fld"><label>Due</label><input id="t-due" type="date"></div>
+        <div class="fld"><label>Priority</label><select id="t-pri"><option>High</option><option>Medium</option><option>Low</option></select></div>
+        <button class="btn" id="t-add">+ Add</button>
+      </div></div>
+      <div class="card"><h3>Open items</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>What</th><th>Owner</th><th>Due</th><th>Priority</th><th>Status</th><th></th></tr></thead>
+        <tbody id="t-rows"></tbody></table></div><div class="empty" id="t-empty">No tasks.</div></div>
+    </section>
+
+    <!-- DEADLINES -->
+    <section class="panel" id="dead">
+      <div class="ph"><h2>Deadlines &amp; Renewals</h2></div>
+      <div class="card"><h3>Add</h3><div class="form">
+        <div class="fld" style="flex:2"><label>Item</label><input id="d-item" placeholder="e.g. Regus rent"></div>
+        <div class="fld"><label>Category</label><select id="d-cat"><option>Renewal</option><option>Visa cut-off</option><option>Agreement</option><option>Payment</option><option>Event</option></select></div>
+        <div class="fld"><label>Date</label><input id="d-date" type="date"></div>
+        <div class="fld"><label>Owner</label><input id="d-owner" value="Salim"></div>
+        <button class="btn" id="d-add">+ Add</button>
+      </div></div>
+      <div class="card"><h3>Tracked</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Item</th><th>Category</th><th>Date</th><th>Days</th><th>Owner</th><th></th></tr></thead>
+        <tbody id="d-rows"></tbody></table></div><div class="empty" id="d-empty">Nothing tracked.</div></div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="panel" id="part">
+      <div class="ph"><h2>Partners</h2></div>
+      <div class="card"><h3>Add</h3><div class="form">
+        <div class="fld"><label>Partner</label><input id="pa-name"></div>
+        <div class="fld"><label>Product</label><input id="pa-prod"></div>
+        <div class="fld"><label>Point of contact</label><input id="pa-poc" placeholder="Name"></div>
+        <div class="fld"><label>Contact (email/phone)</label><input id="pa-contact"></div>
+        <div class="fld" style="flex:2"><label>Next action</label><input id="pa-act"></div>
+        <div class="fld"><label>Status</label><select id="pa-stat"><option>Active</option><option>Needs action</option><option>Stalled</option><option>Prospect</option></select></div>
+        <div class="fld"><label>Owner</label><input id="pa-owner" value="Mohammed"></div>
+        <button class="btn" id="pa-add">+ Add</button>
+      </div></div>
+      <div class="card"><h3>Pipeline</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Partner</th><th>Status</th><th>Product</th><th>Point of contact</th><th>Contact</th><th>Next action</th><th>Owner</th><th></th></tr></thead>
+        <tbody id="pa-rows"></tbody></table></div></div>
+    </section>
+
+    <!-- FINANCE -->
+    <section class="panel" id="fin">
+      <div class="ph"><h2>Finance</h2></div>
+      <div class="kpis k4">
+        <div class="kpi g"><div class="l">Income</div><div class="v" id="f-in">0</div><div class="s">enrolments (DZD)</div></div>
+        <div class="kpi r"><div class="l">Spent</div><div class="v" id="f-out">0</div><div class="s">fees + permanent</div></div>
+        <div class="kpi"><div class="l">Net</div><div class="v" id="f-net">0</div><div class="s">income − spent</div></div>
+        <div class="kpi t"><div class="l">Permanent / mo</div><div class="v" id="f-fix">0</div><div class="s">recurring fees</div></div>
+      </div>
+      <div class="card"><h3>Bookings — by month &amp; product</h3>
+        <div style="overflow-x:auto" id="bk-wrap"></div>
+      </div>
+      <div class="card"><h3>Enrolled students — income</h3>
+        <div class="form">
+          <div class="fld"><label>Date</label><input id="in-date" type="date"></div>
+          <div class="fld" style="flex:2"><label>Student</label><input id="in-name" placeholder="Name"></div>
+          <div class="fld" style="flex:2"><label>Product</label><input id="in-prod" placeholder="Program / package"></div>
+          <div class="fld"><label>Amount DZD</label><input id="in-amt" type="number"></div>
+          <button class="btn" id="in-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Date</th><th>Student</th><th>Product</th><th>Amount</th><th></th></tr></thead>
+          <tbody id="in-rows"></tbody></table></div><div class="empty" id="in-empty">No enrolments logged.</div>
+      </div>
+      <div class="card"><h3>Fees — expenses</h3>
+        <div class="form">
+          <div class="fld"><label>Date</label><input id="fee-date" type="date"></div>
+          <div class="fld" style="flex:2"><label>Item</label><input id="fee-item" placeholder="What was paid"></div>
+          <div class="fld"><label>Amount DZD</label><input id="fee-amt" type="number"></div>
+          <div class="fld" style="flex:2"><label>Remark</label><input id="fee-rem" placeholder="Optional note"></div>
+          <button class="btn" id="fee-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Date</th><th>Item</th><th>Amount</th><th>Remark</th><th></th></tr></thead>
+          <tbody id="fee-rows"></tbody></table></div><div class="empty" id="fee-empty">No expenses logged.</div>
+      </div>
+      <div class="card"><h3>Permanent / recurring fees (monthly)</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Item</label><input id="pf-item" placeholder="e.g. Rent, salaries, CRM"></div>
+          <div class="fld"><label>Amount DZD</label><input id="pf-amt" type="number"></div>
+          <div class="fld" style="flex:2"><label>Remark</label><input id="pf-rem"></div>
+          <button class="btn" id="pf-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Item</th><th>Amount / mo</th><th>Remark</th><th></th></tr></thead>
+          <tbody id="pf-rows"></tbody></table></div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total permanent fees / month:</b> <span id="pf-total" style="font-family:Fraunces;font-weight:700">0</span> DZD</div>
+      </div>
+      <div class="card"><h3>Taxes &amp; contributions</h3>
+        <div class="form">
+          <div class="fld"><label>Type</label><select id="tx-type"><option>G50</option><option>CASNOS</option><option>CNAS</option><option>IBS</option><option>Other</option></select></div>
+          <div class="fld"><label>Month</label><input id="tx-month" type="month"></div>
+          <div class="fld"><label>Amount DZD</label><input id="tx-amt" type="number"></div>
+          <button class="btn" id="tx-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Type</th><th>Month</th><th>Amount</th><th></th></tr></thead>
+          <tbody id="tx-rows"></tbody></table></div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total taxes &amp; contributions logged:</b> <span id="tx-total" style="font-family:Fraunces;font-weight:700">0</span> DZD</div>
+      </div>
+      <div class="card"><h3>Receivables — money students still owe</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Student</label><input id="rcv-name"></div>
+          <div class="fld"><label>Item</label><input id="rcv-item" placeholder="Program"></div>
+          <div class="fld"><label>Currency</label><select id="rcv-cur"><option>DZD</option><option>EUR</option></select></div>
+          <div class="fld"><label>Total</label><input id="rcv-total" type="number"></div>
+          <div class="fld"><label>Paid</label><input id="rcv-paid" type="number"></div>
+          <div class="fld"><label>Due</label><input id="rcv-due" type="date"></div>
+          <button class="btn" id="rcv-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Student</th><th>Item</th><th>Cur.</th><th>Total</th><th>Paid</th><th>Balance</th><th>Due</th><th></th></tr></thead>
+          <tbody id="rcv-rows"></tbody></table></div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Owed to us —</b> DZD <span id="rcv-total-out" style="font-family:Fraunces;font-weight:700;color:var(--gold)">0</span> · EUR <span id="rcv-total-eur" style="font-family:Fraunces;font-weight:700;color:var(--gold)">0</span></div>
+      </div>
+      <div class="card"><h3>Refunds / money at risk</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Case / student</label><input id="ref-name"></div>
+          <div class="fld"><label>Amount</label><input id="ref-amt" type="number"></div>
+          <div class="fld"><label>Currency</label><select id="ref-cur"><option>DZD</option><option>EUR</option><option>USD</option><option>GBP</option></select></div>
+          <div class="fld" style="flex:2"><label>Reason</label><input id="ref-reason" placeholder="Visa rejection / stuck with partner"></div>
+          <div class="fld"><label>Status</label><select id="ref-stat"><option>Owed</option><option>Requested</option><option>Stuck</option><option>Refunded</option></select></div>
+          <button class="btn" id="ref-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Case</th><th>Amount</th><th>Reason</th><th>Status</th><th></th></tr></thead>
+          <tbody id="ref-rows"></tbody></table></div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>At risk (unresolved):</b> <span id="ref-risk" style="font-family:Fraunces;font-weight:700;color:var(--rose)">0</span></div>
+      </div>
+      <div class="card"><h3>Unit economics (auto)</h3>
+        <div class="kpis k4" style="margin:14px 16px">
+          <div class="kpi g"><div class="l">Gross / student</div><div class="v" id="ue-gross">0</div><div class="s">fee + comm + markup</div></div>
+          <div class="kpi r"><div class="l">Acquisition / student</div><div class="v" id="ue-cac">0</div><div class="s">marketing CAC</div></div>
+          <div class="kpi n"><div class="l">Net / student</div><div class="v" id="ue-net">0</div><div class="s">gross − CAC</div></div>
+          <div class="kpi t"><div class="l">Students placed</div><div class="v" id="ue-count">0</div><div class="s">abroad departures</div></div>
+        </div>
+        <div class="bd" style="font-size:11.5px;color:var(--ink-soft)">Auto-calculated from Commissions (fees HT + commission × FX + markup), Marketing (spend ÷ enrolments), and your Survival FX rate. An estimate to sanity-check whether each placement actually makes money.</div>
+      </div>
+    </section>
+
+    <!-- DEPARTURES & COMMISSIONS -->
+    <section class="panel" id="rev">
+      <div class="ph"><h2>Departures &amp; Commissions</h2></div>
+      <div class="kpis k5">
+        <div class="kpi n"><div class="l">Departures</div><div class="v" id="r-count">0</div><div class="s">active records</div></div>
+        <div class="kpi"><div class="l">Enrolment fees</div><div class="v" id="r-fees">0</div><div class="s" id="r-fees-s">DZD</div></div>
+        <div class="kpi t"><div class="l">Comm. expected</div><div class="v" id="r-exp">€0</div><div class="s" id="r-exp-s"></div></div>
+        <div class="kpi g"><div class="l">Comm. received</div><div class="v" id="r-rec">€0</div></div>
+        <div class="kpi r"><div class="l">Outstanding</div><div class="v" id="r-out">€0</div><div class="s">expected − received</div></div>
+      </div>
+      <div class="card"><h3>Add departure / enrolment</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Student</label><input id="r-student" placeholder="Name / reference"></div>
+          <div class="fld"><label>Program / partner</label><input id="r-prog" placeholder="e.g. AIL Spain"></div>
+          <div class="fld"><label>Enrolment fee</label><select id="r-fee"><option value="95000">95,000 DA (ILS)</option><option value="130000">130,000 DA (APP)</option><option value="0">None</option></select></div>
+          <div class="fld"><label>Comm. currency</label><select id="r-cur"><option>EUR</option><option>USD</option><option>DZD</option></select></div>
+          <div class="fld"><label>Commission</label><input id="r-comm" type="number" placeholder="amount"></div>
+          <div class="fld"><label>Markup DZD</label><input id="r-markup" type="number" placeholder="0"></div>
+          <div class="fld"><label>Departure</label><input id="r-date" type="date"></div>
+          <button class="btn" id="r-add">+ Add</button>
+        </div>
+        <div style="padding:0 16px 14px"><span style="font-size:11.5px;color:var(--ink-soft)">VAT (19%) on enrolment fees:</span>
+          <button class="tg" id="vat-incl">Included (TTC)</button><button class="tg" id="vat-excl">Added on top (HT)</button>
+        </div>
+      </div>
+      <div class="card"><h3>Departures &amp; commission status</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Student</th><th>Program</th><th>Fee</th><th>Commission</th><th>Markup</th><th>Departure</th><th>Status</th><th></th></tr></thead>
+        <tbody id="r-rows"></tbody></table></div><div class="empty" id="r-empty">No departures logged yet.</div></div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="panel" id="kpi">
+      <div class="ph"><h2>Weekly KPIs</h2></div>
+      <div class="card"><h3>This month — targets vs actuals</h3>
+        <div class="form">
+          <div class="fld"><label>Target: leads / mo</label><input id="tg-leads" type="number"></div>
+          <div class="fld"><label>Target: enrolments / mo</label><input id="tg-enr" type="number"></div>
+          <div class="fld"><label>Target: revenue / mo (DZD)</label><input id="tg-rev" type="number"></div>
+        </div>
+        <div class="bd" id="tg-bars"></div>
+      </div>
+      <div class="card"><h3>Log week</h3><div class="form">
+        <div class="fld"><label>Week of</label><input id="w-week" type="date"></div>
+        <div class="fld"><label>Leads</label><input id="w-leads" type="number"></div>
+        <div class="fld"><label>Consults</label><input id="w-cons" type="number"></div>
+        <div class="fld"><label>Enrolments</label><input id="w-enr" type="number"></div>
+        <div class="fld"><label>Revenue DZD</label><input id="w-rev" type="number"></div>
+        <button class="btn" id="w-add">+ Add</button>
+      </div></div>
+      <div class="card"><h3>Numbers</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Week</th><th>Leads</th><th>Consults</th><th>Enrol.</th><th>Revenue</th><th>L→E</th><th></th></tr></thead>
+        <tbody id="w-rows"></tbody></table></div><div class="empty" id="w-empty">No weeks logged.</div></div>
+      <div class="card"><h3>Monthly trend</h3>
+        <div class="bd" id="mt-bars"></div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Month</th><th>Leads</th><th>Consults</th><th>Enrol.</th><th>Revenue</th></tr></thead>
+          <tbody id="mt-rows"></tbody></table></div><div class="empty" id="mt-empty">Log weeks to see the monthly trend.</div>
+      </div>
+    </section>
+
+    <!-- SURVIVAL -->
+    <section class="panel" id="surv">
+      <div class="ph"><h2>Survival Model</h2></div>
+      <div class="verdict" id="sv-verdict"><p class="vt" id="sv-t">Enter your numbers</p><p class="vs" id="sv-s">Cash on hand + monthly enrolments → runway &amp; break-even.</p></div>
+      <div class="kpis k3">
+        <div class="kpi"><div class="l">Runway</div><div class="v" id="sv-run">—</div><div class="s" id="sv-run-s">months</div></div>
+        <div class="kpi"><div class="l">Monthly result</div><div class="v" id="sv-res">—</div><div class="s" id="sv-res-s">profit/burn</div></div>
+        <div class="kpi"><div class="l">Break-even</div><div class="v" id="sv-be">—</div><div class="s">enrol./mo</div></div>
+      </div>
+      <div class="two">
+        <div class="card"><h3>Costs &amp; cash</h3><div class="bd">
+          <div class="row2"><label>Cash on hand (DZD)</label><input id="sv-cash" type="number" placeholder="e.g. 1500000"></div>
+          <div class="row2"><label>Monthly fixed (DZD)</label><input id="sv-fixed" type="number" value="2235000"></div>
+          <div class="row2"><label>Other overhead (DZD)</label><input id="sv-over" type="number" value="0"></div>
+          <div class="row2"><label>Local course profit/mo</label><input id="sv-local" type="number" value="0"></div>
+          <div class="row2"><label>FX rate (DZD/€)</label><input id="sv-fx" type="number" value="155"></div>
+          <div class="leak" id="sv-leak"></div>
+        </div></div>
+        <div class="card"><h3>Abroad programs / month</h3><div style="overflow-x:auto"><table>
+          <thead><tr><th>Program</th><th>Units</th><th>Margin €</th><th>DZD</th></tr></thead>
+          <tbody id="sv-rows"></tbody></table></div></div>
+      </div>
+    </section>
+
+    <!-- HR -->
+    <section class="panel" id="hr">
+      <div class="ph"><h2>Human Resources</h2></div>
+      <div class="kpis k3">
+        <div class="kpi n"><div class="l">Headcount</div><div class="v" id="hr-count">0</div></div>
+        <div class="kpi"><div class="l">Payroll / mo</div><div class="v" id="hr-pay">0</div><div class="s">total salaries DZD</div></div>
+        <div class="kpi t"><div class="l">Declared / mo</div><div class="v" id="hr-decl">0</div><div class="s">declared portion DZD</div></div>
+      </div>
+      <div class="card"><h3>Staff</h3>
+        <div class="form">
+          <div class="fld"><label>Name</label><input id="st-name"></div>
+          <div class="fld"><label>Role</label><input id="st-role"></div>
+          <div class="fld"><label>Salary DZD</label><input id="st-sal" type="number"></div>
+          <div class="fld"><label>Declared DZD</label><input id="st-decl" type="number"></div>
+          <div class="fld"><label>Start</label><input id="st-start" type="date"></div>
+          <div class="fld"><label>End</label><input id="st-end" type="date"></div>
+          <div class="fld" style="flex:2"><label>Remarks</label><input id="st-rem"></div>
+          <button class="btn" id="st-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Name</th><th>Role</th><th>Salary</th><th>Declared</th><th>Start</th><th>End</th><th>Remarks</th><th></th></tr></thead>
+          <tbody id="st-rows"></tbody></table></div><div class="empty" id="st-empty">No staff added.</div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total —</b> <span id="st-tot" style="font-weight:600">0 staff</span></div>
+      </div>
+      <div class="card"><h3>Seller performance</h3>
+        <div class="form">
+          <div class="fld"><label>Seller</label><input id="sl-name"></div>
+          <div class="fld"><label>Month</label><input id="sl-month" type="month"></div>
+          <div class="fld"><label>Calls</label><input id="sl-calls" type="number"></div>
+          <div class="fld"><label>Consultations</label><input id="sl-cons" type="number"></div>
+          <div class="fld"><label>Bookings</label><input id="sl-book" type="number"></div>
+          <button class="btn" id="sl-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Seller</th><th>Month</th><th>Calls</th><th>Consults</th><th>Bookings</th><th>Call→Book</th><th></th></tr></thead>
+          <tbody id="sl-rows"></tbody></table></div><div class="empty" id="sl-empty">No seller data yet.</div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total —</b> <span id="sl-tot" style="font-weight:600">—</span></div>
+      </div>
+    </section>
+
+    <!-- SCHOOL -->
+    <section class="panel" id="school">
+      <div class="ph"><h2>School</h2></div>
+      <div class="kpis k4">
+        <div class="kpi n"><div class="l">Active groups</div><div class="v" id="sch-groups">0</div></div>
+        <div class="kpi"><div class="l">Students in class</div><div class="v" id="sch-students">0</div><div class="s">across groups</div></div>
+        <div class="kpi g"><div class="l">School revenue</div><div class="v" id="sch-rev">0</div><div class="s">packages (DZD)</div></div>
+        <div class="kpi t"><div class="l">Seat fill</div><div class="v" id="sch-fill">0%</div><div class="s">enrolled ÷ capacity</div></div>
+      </div>
+      <div class="card"><h3>Student enrollments</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Student name</label><input id="en-name"></div>
+          <div class="fld"><label>Date of enrollment</label><input id="en-date" type="date"></div>
+          <div class="fld"><label>Package</label><input id="en-pkg" placeholder="e.g. General English"></div>
+          <div class="fld"><label>Price DZD</label><input id="en-price" type="number"></div>
+          <button class="btn" id="en-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Student</th><th>Date of enrollment</th><th>Package</th><th>Price (DZD)</th><th></th></tr></thead>
+          <tbody id="en-rows"></tbody></table></div><div class="empty" id="en-empty">No enrollments yet.</div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total —</b> <span id="en-tot" style="font-weight:600">0 students · 0 DZD</span></div>
+      </div>
+      <div class="card"><h3>Programs &amp; packages</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Package</label><input id="lp-name" placeholder="e.g. General English"></div>
+          <div class="fld"><label>Price DZD</label><input id="lp-price" type="number"></div>
+          <button class="btn" id="lp-add">+ Add package</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Package</th><th>Price (DZD)</th><th>Enrolled</th><th>Revenue (DZD)</th><th></th></tr></thead>
+          <tbody id="lp-rows"></tbody></table></div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total — school revenue (logged):</b> <span id="lp-total" style="font-family:Fraunces;font-weight:700">0</span> DZD</div>
+      </div>
+      <div class="card"><h3>Classes / groups</h3>
+        <div class="form">
+          <div class="fld"><label>Group</label><input id="gr-name" placeholder="e.g. Spanish A1 eve"></div>
+          <div class="fld"><label>Program</label><input id="gr-prog" placeholder="Spanish / English"></div>
+          <div class="fld"><label>Teacher</label><input id="gr-teacher"></div>
+          <div class="fld"><label>Day</label><input id="gr-day" placeholder="Sun/Tue"></div>
+          <div class="fld"><label>Time</label><input id="gr-time" placeholder="17:00"></div>
+          <div class="fld"><label>Enrolled</label><input id="gr-enr" type="number"></div>
+          <div class="fld"><label>Capacity</label><input id="gr-cap" type="number" placeholder="8"></div>
+          <button class="btn" id="gr-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Group</th><th>Program</th><th>Teacher</th><th>Schedule</th><th>Enrolled</th><th>Capacity</th><th>Fill</th><th></th></tr></thead>
+          <tbody id="gr-rows"></tbody></table></div><div class="empty" id="gr-empty">No groups yet.</div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total —</b> <span id="gr-tot" style="font-weight:600">0 enrolled / 0 capacity · 0%</span></div>
+      </div>
+    </section>
+
+    <!-- MARKETING -->
+    <section class="panel" id="mkt">
+      <div class="ph"><h2>Marketing</h2></div>
+      <div class="kpis k4">
+        <div class="kpi r"><div class="l">Spend</div><div class="v" id="mk-spend">0</div><div class="s">DZD logged</div></div>
+        <div class="kpi n"><div class="l">Leads</div><div class="v" id="mk-leads">0</div></div>
+        <div class="kpi t"><div class="l">Cost / lead</div><div class="v" id="mk-cpl">0</div><div class="s">DZD</div></div>
+        <div class="kpi g"><div class="l">Cost / enrolment</div><div class="v" id="mk-cpe">0</div><div class="s">DZD</div></div>
+      </div>
+      <div class="card"><h3>Campaigns</h3>
+        <div class="form">
+          <div class="fld" style="flex:2"><label>Campaign</label><input id="cm-name" placeholder="e.g. BAC season - IG"></div>
+          <div class="fld"><label>Channel</label><select id="cm-chan"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>Google</option><option>Offline</option><option>Other</option></select></div>
+          <div class="fld"><label>Period</label><input id="cm-date" type="date"></div>
+          <div class="fld"><label>Spend DZD</label><input id="cm-spend" type="number"></div>
+          <div class="fld"><label>Leads</label><input id="cm-leads" type="number"></div>
+          <div class="fld"><label>Enrolments</label><input id="cm-enr" type="number"></div>
+          <button class="btn" id="cm-add">+ Add</button>
+        </div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Campaign</th><th>Channel</th><th>Period</th><th>Spend</th><th>Leads</th><th>Enrol.</th><th>Cost/lead</th><th>Cost/enrol</th><th></th></tr></thead>
+          <tbody id="cm-rows"></tbody></table></div><div class="empty" id="cm-empty">No campaigns logged.</div>
+        <div class="bd" style="border-top:1px solid var(--line);font-size:13px"><b>Total —</b> <span id="cm-tot" style="font-weight:600">—</span></div>
+      </div>
+      <div class="card"><h3>By channel</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Channel</th><th>Spend</th><th>Leads</th><th>Enrol.</th><th>Cost/lead</th></tr></thead>
+        <tbody id="ch-rows"></tbody></table></div></div>
+    </section>
+
+    <!-- LIBRARY -->
+    <section class="panel" id="lib">
+      <div class="ph"><h2>Library</h2></div>
+      <div class="card lib"><h3>EF programs &amp; commission reference</h3><div class="bd">
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>ILS — Intensive Language Study</td><td>Enrolment fee 95,000 DA</td></tr>
+            <tr><td>APP — Academic Preparation Program</td><td>Enrolment fee 130,000 DA</td></tr>
+            <tr><td>Commission — language &gt; 10 weeks</td><td>8% (EUR)</td></tr>
+            <tr><td>Commission — university preparation fees</td><td>4% (EUR)</td></tr>
+            <tr><td>Commission — HULT &amp; EF Academy</td><td>10% (EUR)</td></tr>
+            <tr><td>VAT</td><td>19% on revenue</td></tr>
+          </tbody></table></div>
+        <p style="font-size:11.5px;color:var(--ink-soft);margin-top:8px">Commissions are paid in EUR — log the EUR amount per departed student in the Commissions tab and watch the FX gap (official ~155 vs parallel ~278).</p>
+      </div></div>
+
+      <div class="card lib"><h3>Break-even &amp; targets</h3><div class="bd">
+        <ul>
+          <li><b>Break-even:</b> 24 ILS <i>or</i> 17 APP enrolments per month.</li>
+          <li><b>Fixed costs:</b> ~2,235,000 DZD / month (rent, salaries, subscriptions).</li>
+          <li><b>Profit formula:</b> (95,000 × ILS) + (130,000 × APP) − 2,235,000, before EUR commissions.</li>
+          <li><b>Offices:</b> Algiers + Oran.</li>
+        </ul>
+      </div></div>
+
+      <div class="card lib"><h3>Priority action points</h3><div class="bd">
+        <ul>
+          <li><b>This week:</b> confirm monthly ILS/APP targets; review the latest EF commission statement; reconcile Regus + Workspace.</li>
+          <li><b>This month:</b> push HULT + EF Academy applications during BAC season; verify commission reconciliation; set seller targets.</li>
+        </ul>
+        <p style="font-size:11.5px;color:var(--ink-soft);margin-top:6px">Placeholder notes — amend these as we refine the EF center together.</p>
+      </div></div>
+    </section>
+  </main>
+</div>
+
+<script>
+const KEY='ef-os-v1';
+let mem=false;
+const PROGS=[{name:"ILS (Intensive Language)",units:0,m:300},{name:"APP (Academic Prep)",units:0,m:280},{name:"HULT Business School",units:0,m:900},{name:"EF Academy",units:0,m:700}];
+const EF_INV=[{"date": "2025-07-01", "name": "Bouchelaghem Ibrahim · FACT/07/0190", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "EURL GTPH SMAIL MOHAMED · FACT/07/0191", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Debah Aymen · FACT/07/0192", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Kherbani Ines · FACT/07/0193", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "ALLAM Mourad ( ALLAM Ouns ) · FACT/07/0194", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-07-01", "name": "Rafik Benallou · FACT/07/0195", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Mr Allia Abdallah · FACT/07/0196", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "MR AMIAR NOREDDINE ( ADEM ) · FACT/07/0197", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-07-01", "name": "mounir habib · FACT/07/0198", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "hamza fandi · FACT/07/0199", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Abzouzi Meriem Milinia · FACT/07/0201", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Medhat Ali Hassen Djamila · FACT/07/0202", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Berrekia Leila ( Yasmine Berrekia) · FACT/07/0203", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Bouadou Abderraouf · FACT/07/0204", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Sahnoune Riad · FACT/07/0206", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Naceur Abdelhaki · FACT/07/0207", "prod": "ILS", "amt": 95000}, {"date": "2025-07-01", "name": "Balaouane Rafik (MR.Brahim Alloune) · FACT/07/0208", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Balaouane Mohamed Nadir (MR.Brahim Alloune) · FACT/07/0209", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Djebarah hicham · FACT/07/0210", "prod": "APP", "amt": 260000}, {"date": "2025-07-01", "name": "Chemseedine Moukrani · FACT/07/0211", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Iamranene Nacer (lyes) · FACT/07/0212", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "Iamranene Nacer (Aanis) · FACT/07/0213", "prod": "APP", "amt": 130000}, {"date": "2025-07-01", "name": "LAHRECHE Tesnim · FACT/07/0214", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "DEROUICHE Amine ( Yahia Abderrahim ) · FACT/08/0215", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Khalfallah Youcef · FACT/08/0216", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Zoheir Hamrani · FACT/08/0217", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "KHIDER Ayoub · FACT/08/0219", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-08-01", "name": "Ferroukhi Abdelhak · FACT/08/0222", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Melissa Betouche · FACT/08/0230", "prod": "APP", "amt": 205000}, {"date": "2025-08-01", "name": "Abidi Youcef Abderraouf · FACT/08/0220", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Daoud Wassim Mahmoud · FACT/08/0221", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Khennouche Mohamed Nazim · FACT/08/0223", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "youcef ben zoukh · FACT/08/0224", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Anis Hichem Biudjadja · FACT/08/0225", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Anes Bendiaf · FACT/08/0226", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Abidi Imene · FACT/08/0227", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Chabane Meriem Malak · FACT/08/0228", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Farouk Benbrahim · FACT/08/0229", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Selama Mohamed Amine · FACT/08/0231", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Mosteghanemi Meriem (Boudjema Mohamed) · FACT/08/0232", "prod": "ILS", "amt": 95000}, {"date": "2025-08-01", "name": "Dabeche Assia (Mansourine Zoubida Alaa) · FACT/08/0233", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Maouche Walid · FACT/08/0234", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Habib Youcef Nadjib · FACT/08/0235", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "madani Zineeddine · FACT/08/0236", "prod": "APP", "amt": 130000}, {"date": "2025-08-01", "name": "Mecid Nadia · FACT/08/0237", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Smail Taleb Bouzid · FACT/09/0245", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Badri Azzedine ( Amina ) · FACT/09/0248", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Haithem Boussoualim · FACT/08/0256", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Allouche Nadia · FACT/08/0259", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Saidi Malak Hadil · FACT/09/0238", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Hadjout serine yasmine · FACT/09/0239", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Madi Djilali · FACT/09/0240", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "MAHLOUS Chakib · FACT/09/0241", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Chahmi Anis · FACT/09/0242", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Gaouas Derradji · FACT/09/0243", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "AFIF Ahmed · FACT/09/0244", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "SAYAH Rachid · FACT/09/0246", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Dali Amina · FACT/09/0247", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Zermat Mohamed Saif · FACT/09/0249", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "SOUM Youcef · FACT/09/0250", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "TAAM Nassib · FACT/09/0251", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Commercant Osmali Lotfi · FACT/09/0252", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Fourali Chakib · FACT/09/0253", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Cylia Benyaya · FACT/09/0254", "prod": "ILS", "amt": 50000}, {"date": "2025-09-01", "name": "Hammadou Esmah · FACT/09/0255", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-09-01", "name": "Sofiane Fadi Saadi · FACT/09/0257", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Ghozline bouteldja · FACT/09/0258", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Wafi dendani · FACT/09/0260", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "Abdessadek Abed · FACT/09/0261", "prod": "ILS", "amt": 95000}, {"date": "2025-09-01", "name": "Rouhani Larbi · FACT/09/0262", "prod": "APP", "amt": 130000}, {"date": "2025-09-01", "name": "AIT YAKOUB Lisa · FACT/09/0263", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Rachida Kehili · FACT/10/0265", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Samir Merdjana (Anis Mehdi Merdjana) · FACT/10/0270", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Hammadou Sarah · FACT/10/0272", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-10-01", "name": "M. Krim Ahmed ( Mohamed Ali Krim ) · FACT/10/0273", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "M. Krim Ahmed ( Ahmed Islem ) · FACT/10/0274", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Abbas Noura ( Merchichi Salsabil ) · FACT/10/0275", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Marwan Berrah · FACT/10/0276", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Ania Djouher Sellal · FACT/10/0278", "prod": "APP", "amt": 130000}, {"date": "2025-10-01", "name": "Hocine Naït Sidi Ahmed · FACT/10/0279", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "taher ben bordi · FACT/10/0264", "prod": "APP", "amt": 130000}, {"date": "2025-10-01", "name": "Abderrahime Berrekia · FACT/10/0266", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Bechiri Aimen · FACT/10/0267", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Benkaci Asma · FACT/10/0268", "prod": "APP", "amt": 130000}, {"date": "2025-10-01", "name": "( Mechri Hadjer ) Maram Assila Boufrioua · FACT/10/0269", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Imade Eddine Sadine · FACT/10/0271", "prod": "ILS", "amt": 95000}, {"date": "2025-10-01", "name": "Mosbah Aymen El Khalil · FACT/10/0277", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Soltani Abdelaziz · FACT/11/0284", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Allam Ouns · FACT/11/0286", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Bellem Riadh · FACT/11/0287", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Boukrissa Yahia · FACT/11/0290", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Maamar Messaoud ( Haithem) · FACT/11/0291", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Maamar Messaoud ( Djihene) · FACT/11/0292", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Maamar Messaoud ( Djaweud) · FACT/11/0293", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Soum Youcef · FACT/11/0295", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Fethiza Tedjani Abdelouahab · FACT/11/0296", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Akmoum Mekki · FACT/11/0298", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Megharbi Nadia ( Tarek Lebbou et Yassmine Lebbou) · FACT/11/0310", "prod": "ILS", "amt": 190000}, {"date": "2025-11-01", "name": "Zouai Baha Eddine · FACT/11/0311", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Riad Nacer ( Amira) · FACT/11/0318", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Okka Amina · FACT/11/0319", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Ibrahim Ghina · FACT/11/0321", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Amina Laoufi · FACT/11/0324", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Bakli Abdelhak · FACT/11/0325", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Mme Ben Choula Zina · FACT/11/0280", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Said Izouine (Adam Izouine) · FACT/11/0281", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Ramy Nekkache · FACT/11/0282", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Bessaiah Mohamed Dia Eddine · FACT/11/0283", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Guvec Nabila ( Guvec Malek ) · FACT/11/0285", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Khettal Islam · FACT/11/0288", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Dadoua Lina Jamila · FACT/11/0294", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Mohammed Amine BELHOUADJEB · FACT/11/0297", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Mazouz Abdenour · FACT/11/0299", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Noui Yacine · FACT/11/0300", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Idri Assia (Benameur Lamis Sara) · FACT/11/0301", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Maria Jihane Lagheliel · FACT/11/0302", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Hassiba Aied · FACT/11/0303", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-11-01", "name": "MR BECHIRI OMRANE ( Iman ) · FACT/11/0304", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "MR BECHIRI OMRANE ( Intissar ) · FACT/11/0305", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Manel Benbourahla · FACT/11/0306", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "MR MIROUD ILYES · FACT/11/0307", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Zeggar Cheikha Hakima ( Iyad Mohamed ) · FACT/11/0308", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Louadfel Kamar · FACT/11/0309", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Mr Bechiri (Bechiri Adem) · FACT/11/0312", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Mr Bechiri (Bechiri Afnane) · FACT/11/0313", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Mr Bechiri (Bechiri Meriem) · FACT/11/0314", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "BELFERKOUS Haroun · FACT/11/0315", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "BELFERKOUS Haroun · FACT/11/0316", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Fridjat Mohammed Cherif · FACT/11/0317", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Benzine Yasmine · FACT/11/0320", "prod": "APP", "amt": 130000}, {"date": "2025-11-01", "name": "Benredjem Yacine · FACT/11/0322", "prod": "ILS", "amt": 95000}, {"date": "2025-11-01", "name": "Benredjem  Ayoub · FACT/11/0323", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "OUADA Ahmed ( Maather OUADA) · FACT/12/0326", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Salima Baslimane · FACT/12/0327", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "ABDELRAHMANE GOUMIDI · FACT/12/0328", "prod": "ILS (VISA OK)", "amt": 85000}, {"date": "2025-12-01", "name": "FRAIH Mabrouk · FACT/12/0329", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Yacine Boukhouna · FACT/12/0330", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Abdi Zakaria · FACT/12/0331", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Fethallah BENSALEM · FACT/12/0332", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Ziad mebarki · FACT/12/0333", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Attabi Amine · FACT/12/0334", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "imad eddine Guezzout · FACT/12/0335", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "YATOUI ABDERRAHMANE · FACT/12/0336", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Badjadi Adel · FACT/12/0337", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Gheraib Abdelali · FACT/12/0338", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Mr Badaoui Mohamed El Seddik · FACT/12/0339", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Atamnia Mohamed el Amine · FACT/12/0341", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Hiab Yacine · FACT/12/0344", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Taïr Rostom · FACT/12/0342", "prod": "ILS", "amt": 95000}, {"date": "2025-12-01", "name": "Malek Zetchi · FACT/12/0340", "prod": "APP", "amt": 130000}, {"date": "2025-12-01", "name": "Taïr Yasmine · FACT/12/0343", "prod": "ILS", "amt": 95000}];
+const EF_SCHOOL=[{"date":"2025-07-01","name":"Tech Care Equipement · FACT/07/0200","pkg":"School / corporate","price":75000},{"date":"2025-07-01","name":"Sarl VMS Industrie · FACT/07/0205","pkg":"School / corporate","price":75000},{"date":"2025-08-01","name":"Sarl VMS Industrie · FACT/08/0218","pkg":"School / corporate","price":80000},{"date":"2025-11-01","name":"Nabil Bourezek ( Bourezek Hacen ) · FACT/11/0289","pkg":"School / corporate","price":45000}];
+let DB=null,STORE=null,DATESTR='';
+
+function isoIn(d){const t=new Date();t.setDate(t.getDate()+d);return t.toISOString().slice(0,10);}
+function newProfile(){return{
+  tasks:JSON.parse(JSON.stringify(seed.tasks)),deadlines:JSON.parse(JSON.stringify(seed.deadlines)),partners:JSON.parse(JSON.stringify(seed.partners)),
+  kpis:[],pipeline:[],departures:[],vatIncl:true,income:[],fees:[],staff:[],sellers:[],groups:[],campaigns:[],cases:[],receivables:[],refunds:[],taxes:[],enrolls:[],targets:{leads:0,enr:0,rev:0},partnersV:2,
+  permFees:[{item:"Regus rent (coworking)",amt:60000,remark:"Pay before the 15th"},{item:"Pro-mail & website (Workspace)",amt:9000,remark:"Monthly — keep auto-renew"}],
+  localPkgs:[{name:"General English",price:75000,count:0},{name:"IELTS Preparation",price:80000,count:0},{name:"Spanish",price:75000,count:0}],
+  surv:{cash:null,fixed:2235000,over:0,local:0,fx:155,progs:JSON.parse(JSON.stringify(PROGS))}
+};}
+const seed={
+  tasks:[
+    {title:"Confirm monthly ILS / APP enrolment targets",owner:"Salim",due:isoIn(2),pri:"High",status:"To do"},
+    {title:"Review latest EF commission statement",owner:"Salim",due:isoIn(5),pri:"Medium",status:"To do"},
+    {title:"Push HULT + EF Academy applications (BAC families)",owner:"Mohammed",due:isoIn(6),pri:"High",status:"In progress"},
+    {title:"Reconcile Regus rent + Workspace renewal",owner:"Zineb",due:isoIn(7),pri:"Medium",status:"To do"}
+  ],
+  deadlines:[
+    {item:"Regus rent (pay before the 15th)",cat:"Payment",date:isoIn(9),owner:"Zineb"},
+    {item:"Google Workspace renewal",cat:"Renewal",date:isoIn(20),owner:"Salim"},
+    {item:"EF commission reconciliation (monthly)",cat:"Payment",date:isoIn(25),owner:"Zineb"}
+  ],
+  partners:[
+    {name:"EF Education First",status:"Active",product:"ILS + APP language / uni-prep abroad",poc:"",contact:"",act:"Submit monthly enrolment reporting",owner:"Salim"},
+    {name:"HULT Business School",status:"Active",product:"Undergrad / postgrad business degrees",poc:"",contact:"",act:"Drive applications + scholarships",owner:"Mohammed"},
+    {name:"EF Academy",status:"Active",product:"Boarding high school (US / UK)",poc:"",contact:"",act:"Promote to BAC-age families",owner:"Mohammed"}
+  ],
+  finance:[],
+  kpis:[]
+};
+
+async function load(){
+  let raw=null;
+  try{ if(typeof window!=='undefined'&&window.storage){const r=await window.storage.get(KEY,false);raw=r&&r.value?r.value:null;} }catch(e){}
+  if(raw===null){ try{ raw=localStorage.getItem(KEY); }catch(e){} }
+  if(raw){ try{const p=JSON.parse(raw); if(p&&p.profiles){STORE=p;} else if(p&&p.tasks){STORE={office:'algiers',profiles:{algiers:p}};} }catch(e){} }
+  if(!STORE||!STORE.profiles)STORE={office:'algiers',profiles:{}};
+  if(!STORE.profiles.algiers)STORE.profiles.algiers=newProfile();
+  if(!STORE.profiles.oran)STORE.profiles.oran=newProfile();
+  if(STORE.office!=='oran')STORE.office='algiers';
+  if(!STORE.profiles.algiers.incomeSeedV){STORE.profiles.algiers.income=(STORE.profiles.algiers.income||[]).concat(EF_INV);STORE.profiles.algiers.incomeSeedV=1;}
+  if(!STORE.profiles.algiers.enrollSeedV){STORE.profiles.algiers.enrolls=(STORE.profiles.algiers.enrolls||[]).concat(EF_SCHOOL);STORE.profiles.algiers.enrollSeedV=1;}
+  DB=STORE.profiles[STORE.office];
+  await save();
+  mergePartners();
+  DATESTR=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  setOffice();syncInputs();renderAll();
+}
+async function save(){
+  const val=JSON.stringify(STORE);
+  try{ if(typeof window!=='undefined'&&window.storage){await window.storage.set(KEY,val,false);return;} }catch(e){}
+  try{ localStorage.setItem(KEY,val);return; }catch(e){}
+}
+function setOffice(){
+  document.querySelectorAll('#office button').forEach(b=>b.classList.toggle('on',b.dataset.o===STORE.office));
+  const t=document.getElementById('today');if(t)t.textContent=(STORE.office==='oran'?'Oran office':'Algiers office')+' · '+DATESTR;
+}
+function syncInputs(){
+  ['sv-cash','sv-fixed','sv-over','sv-local','sv-fx'].forEach(id=>{const k=id.split('-')[1];const el=document.getElementById(id);if(el)el.value=(DB.surv&&DB.surv[k]!=null)?DB.surv[k]:'';});
+  ['leads','enr','rev'].forEach(k=>{const el=document.getElementById('tg-'+k);if(el)el.value=(DB.targets&&DB.targets[k])?DB.targets[k]:'';});
+}
+function mergePartners(){
+  if(DB.partnersV>=2)return;
+  const names=new Set((DB.partners||[]).map(p=>p.name));
+  seed.partners.forEach(p=>{ if(!names.has(p.name)) DB.partners.push(p); });
+  DB.partnersV=2; save();
+}
+const dzd=n=>Math.round(n).toLocaleString('en-US');
+const eur=n=>'€'+Math.round(n).toLocaleString('en-US');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const daysTo=iso=>{const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(iso)-t)/864e5);};
+
+function renderAll(){rTasks();rDead();rPart();rFin();rBookings();rKpi();rPipe();rCases();rSurv();rDep();rLocal();rSchool();rMkt();rHR();rHome();applyFilters();}
+function rCases(){
+  const tb=document.getElementById('vc-rows');tb.innerHTML='';
+  document.getElementById('vc-empty').style.display=DB.cases.length?'none':'block';
+  const ANS=["Pending","Yes","No"];
+  let total=0,yes=0,no=0,pend=0;
+  DB.cases.forEach((c,i)=>{
+    const n=+c.num||0;total+=n;
+    if(c.ans==='Yes')yes+=n;else if(c.ans==='No')no+=n;else pend+=n;
+    const sc=c.ans==='Yes'?'s-done':c.ans==='No'?'p-hi':'s-todo';
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(c.dest||'')}</b></td>
+      <td style="font-family:Fraunces;font-weight:700">${n}</td>
+      <td><select class="inline ${sc}" data-i="${i}" data-k="vca">${ANS.map(s=>`<option ${s===(c.ans||'Pending')?'selected':''}>${s}</option>`).join('')}</select></td>
+      <td style="font-size:11.5px">${esc(c.note||'')}</td>
+      <td><button class="del" data-k="vcd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  document.getElementById('vc-total').textContent=total;
+  document.getElementById('vc-yes').textContent=yes;
+  document.getElementById('vc-no').textContent=no;
+  document.getElementById('vc-pend').textContent=pend;
+  const answered=yes+no;
+  document.getElementById('vc-rate').textContent=answered?Math.round(yes/answered*100)+'%':'—';
+  bind();}
+function rSchool(){
+  const tb=document.getElementById('gr-rows');tb.innerHTML='';
+  document.getElementById('gr-empty').style.display=DB.groups.length?'none':'block';
+  let enrolled=0,cap=0;
+  DB.groups.forEach((g,i)=>{enrolled+=+g.enr||0;cap+=+g.cap||0;const fill=g.cap>0?Math.round((g.enr||0)/g.cap*100):0;
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(g.name||'')}</b></td><td>${esc(g.prog||'')}</td><td>${esc(g.teacher||'')}</td>
+      <td style="font-size:11.5px">${esc(((g.day||'')+' '+(g.time||'')).trim())}</td>
+      <td>${g.enr||0}</td><td>${g.cap||0}</td>
+      <td><span class="days ${fill>=80?'d-green':fill>=50?'d-amber':'d-red'}">${fill}%</span></td>
+      <td><button class="del" data-k="grpd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  document.getElementById('sch-groups').textContent=DB.groups.length;
+  document.getElementById('sch-students').textContent=enrolled;
+  document.getElementById('sch-rev').textContent=dzd(DB.localPkgs.reduce((a,p)=>a+(+p.price||0)*(+p.count||0),0));
+  document.getElementById('sch-fill').textContent=(cap>0?Math.round(enrolled/cap*100):0)+'%';
+  document.getElementById('gr-tot').textContent=enrolled+' enrolled / '+cap+' capacity · '+(cap>0?Math.round(enrolled/cap*100):0)+'%';
+  const en=document.getElementById('en-rows');en.innerHTML='';DB.enrolls=DB.enrolls||[];
+  document.getElementById('en-empty').style.display=DB.enrolls.length?'none':'block';
+  let efees=0;
+  [...DB.enrolls].map((r,i)=>({r,i})).sort((a,b)=>(b.r.date||'').localeCompare(a.r.date||'')).forEach(({r,i})=>{efees+=+r.price||0;
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(r.name||'')}</b></td><td style="font-size:11.5px;color:var(--ink-soft)">${esc(r.date||'')}</td><td>${esc(r.pkg||'')}</td><td style="font-family:Fraunces;font-weight:600">${dzd(r.price||0)}</td><td><button class="del" data-k="enrd" data-i="${i}">×</button></td>`;en.appendChild(tr);});
+  document.getElementById('en-tot').textContent=DB.enrolls.length+' students · '+dzd(efees)+' DZD';
+  bind();}
+function rMkt(){
+  const tb=document.getElementById('cm-rows');tb.innerHTML='';
+  document.getElementById('cm-empty').style.display=DB.campaigns.length?'none':'block';
+  let spend=0,leads=0,enr=0;const chan={};
+  [...DB.campaigns].map((c,i)=>({c,i})).sort((a,b)=>(b.c.date||'').localeCompare(a.c.date||'')).forEach(({c,i})=>{
+    spend+=+c.spend||0;leads+=+c.leads||0;enr+=+c.enr||0;
+    const cpl=c.leads>0?Math.round((c.spend||0)/c.leads):0,cpe=c.enr>0?Math.round((c.spend||0)/c.enr):0;
+    const k=c.chan||'Other';chan[k]=chan[k]||{s:0,l:0,e:0};chan[k].s+=+c.spend||0;chan[k].l+=+c.leads||0;chan[k].e+=+c.enr||0;
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(c.name||'')}</b></td><td><span class="pill src">${esc(c.chan||'')}</span></td>
+      <td style="font-size:11.5px;color:var(--ink-soft)">${esc(c.date||'')}</td>
+      <td style="font-family:Fraunces;font-weight:600">${dzd(c.spend||0)}</td><td>${c.leads||0}</td><td>${c.enr||0}</td>
+      <td>${cpl?dzd(cpl):'—'}</td><td>${cpe?dzd(cpe):'—'}</td>
+      <td><button class="del" data-k="cmpd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  document.getElementById('mk-spend').textContent=dzd(spend);
+  document.getElementById('mk-leads').textContent=leads;
+  document.getElementById('mk-cpl').textContent=leads>0?dzd(Math.round(spend/leads)):'0';
+  document.getElementById('mk-cpe').textContent=enr>0?dzd(Math.round(spend/enr)):'0';
+  document.getElementById('cm-tot').textContent='Spend '+dzd(spend)+' · Leads '+leads+' · Enrol '+enr+' · Cost/enrol '+(enr>0?dzd(Math.round(spend/enr)):'—');
+  const ct=document.getElementById('ch-rows');ct.innerHTML='';
+  Object.keys(chan).forEach(k=>{const d=chan[k];const cpl=d.l>0?dzd(Math.round(d.s/d.l)):'—';
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(k)}</td><td>${dzd(d.s)}</td><td>${d.l}</td><td>${d.e}</td><td><b>${cpl}</b></td>`;ct.appendChild(tr);});
+  bind();}
+function rHR(){
+  const st=document.getElementById('st-rows');st.innerHTML='';
+  document.getElementById('st-empty').style.display=DB.staff.length?'none':'block';let pay=0,decl=0;
+  DB.staff.forEach((s,i)=>{pay+=+s.sal||0;decl+=+s.decl||0;const tr=document.createElement('tr');
+    tr.innerHTML=`<td><b>${esc(s.name||'')}</b></td><td>${esc(s.role||'')}</td>
+      <td style="font-family:Fraunces;font-weight:600">${dzd(s.sal||0)}</td><td>${dzd(s.decl||0)}</td>
+      <td>${esc(s.start||'')}</td><td>${esc(s.end||'')}</td>
+      <td style="font-size:11.5px;color:var(--ink-soft)">${esc(s.rem||'')}</td>
+      <td><button class="del" data-k="std" data-i="${i}">×</button></td>`;st.appendChild(tr);});
+  document.getElementById('hr-count').textContent=DB.staff.length;
+  document.getElementById('hr-pay').textContent=dzd(pay);
+  document.getElementById('hr-decl').textContent=dzd(decl);
+  document.getElementById('st-tot').textContent=DB.staff.length+' staff · payroll '+dzd(pay)+' · declared '+dzd(decl);
+  const sl=document.getElementById('sl-rows');sl.innerHTML='';
+  document.getElementById('sl-empty').style.display=DB.sellers.length?'none':'block';
+  let tc=0,tco=0,tb=0;
+  [...DB.sellers].map((r,i)=>({r,i})).sort((a,b)=>(b.r.month||'').localeCompare(a.r.month||'')).forEach(({r,i})=>{
+    tc+=+r.calls||0;tco+=+r.cons||0;tb+=+r.book||0;
+    const rate=r.calls>0?Math.round((r.book||0)/r.calls*100):0;
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(r.name||'')}</b></td><td>${esc(r.month||'')}</td>
+      <td>${r.calls||0}</td><td>${r.cons||0}</td><td><b>${r.book||0}</b></td>
+      <td><span class="days ${rate>=10?'d-green':rate>=5?'d-amber':'d-red'}">${rate}%</span></td>
+      <td><button class="del" data-k="seld" data-i="${i}">×</button></td>`;sl.appendChild(tr);});
+  const trate=tc>0?Math.round(tb/tc*100):0;
+  document.getElementById('sl-tot').textContent='Calls '+tc+' · Consults '+tco+' · Bookings '+tb+' · Call→Book '+trate+'%';
+  bind();}
+
+/* TASKS */
+function rTasks(){const tb=document.getElementById('t-rows');tb.innerHTML='';
+  document.getElementById('t-empty').style.display=DB.tasks.length?'none':'block';
+  DB.tasks.forEach((t,i)=>{const pc=t.pri==='High'?'p-hi':t.pri==='Medium'?'p-md':'p-lo';
+    const sc=t.status==='Done'?'s-done':t.status==='In progress'?'s-prog':'s-todo';const dl=t.due?daysTo(t.due):null;
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(t.title)}</td><td>${esc(t.owner||'')}</td>
+      <td>${t.due?esc(t.due)+(dl!=null&&t.status!=='Done'?` <span class="days ${dl<3?'d-red':dl<7?'d-amber':'d-green'}">${dl}d</span>`:''):'—'}</td>
+      <td><span class="pill ${pc}">${t.pri}</span></td>
+      <td><select class="inline ${sc}" data-i="${i}" data-k="ts"><option ${t.status==='To do'?'selected':''}>To do</option><option ${t.status==='In progress'?'selected':''}>In progress</option><option ${t.status==='Done'?'selected':''}>Done</option></select></td>
+      <td><button class="del" data-k="td" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  bind();}
+/* DEADLINES */
+function rDead(){const tb=document.getElementById('d-rows');tb.innerHTML='';
+  document.getElementById('d-empty').style.display=DB.deadlines.length?'none':'block';
+  [...DB.deadlines].map((d,i)=>({d,i})).sort((a,b)=>daysTo(a.d.date)-daysTo(b.d.date)).forEach(({d,i})=>{
+    const dl=daysTo(d.date);const c=dl<7?'d-red':dl<30?'d-amber':'d-green';
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(d.item)}</td><td><span class="pill s-todo">${esc(d.cat)}</span></td><td>${esc(d.date)}</td>
+      <td><span class="days ${c}">${dl<0?'overdue':dl+'d'}</span></td><td>${esc(d.owner||'')}</td>
+      <td><button class="del" data-k="dd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  bind();}
+/* PARTNERS */
+function rPart(){const tb=document.getElementById('pa-rows');tb.innerHTML='';
+  DB.partners.forEach((p,i)=>{const sc=p.status==='Active'?'s-done':p.status==='Stalled'?'p-hi':p.status==='Needs action'?'p-md':'s-prog';
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(p.name)}</b></td>
+      <td><select class="inline ${sc}" data-i="${i}" data-k="ps">${['Active','Needs action','Stalled','Prospect'].map(s=>`<option ${s===p.status?'selected':''}>${s}</option>`).join('')}</select></td>
+      <td style="font-size:11.5px;color:var(--ink-soft)">${esc(p.product||'')}</td>
+      <td style="font-size:12px">${esc(p.poc||'')}</td>
+      <td style="font-size:11.5px">${esc(p.contact||'')}</td>
+      <td>${esc(p.act||'')}</td><td>${esc(p.owner||'')}</td><td><button class="del" data-k="pd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  bind();}
+/* FINANCE */
+function rBookings(){
+  const wrap=document.getElementById('bk-wrap');if(!wrap)return;
+  const inc=DB.income||[];
+  if(!inc.length){wrap.innerHTML='<div class="empty">No bookings yet.</div>';return;}
+  const ML=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const lbl=m=>ML[+m.slice(5,7)]+' '+m.slice(0,4);
+  const months=[...new Set(inc.map(r=>(r.date||'').slice(0,7)).filter(Boolean))].sort();
+  const prods=[...new Set(inc.map(r=>r.prod||'—'))].sort();
+  const bk=r=>{const a=+r.amt||0,p=r.prod;if(p==='APP')return a&&a%130000===0?a/130000:1;if(p==='ILS')return a&&a%95000===0?a/95000:1;return 1;};
+  const cnt={};inc.forEach(r=>{const m=(r.date||'').slice(0,7);if(!m)return;const p=r.prod||'—';cnt[m]=cnt[m]||{};cnt[m][p]=(cnt[m][p]||0)+bk(r);});
+  const colTot={};let grand=0;
+  let h='<table><thead><tr><th>Month</th>'+prods.map(p=>`<th>${esc(p)}</th>`).join('')+'<th>Total</th></tr></thead><tbody>';
+  months.forEach(m=>{let rt=0;h+=`<tr><td><b>${esc(lbl(m))}</b></td>`;prods.forEach(p=>{const c=(cnt[m]&&cnt[m][p])||0;rt+=c;colTot[p]=(colTot[p]||0)+c;h+=`<td>${c||''}</td>`;});grand+=rt;h+=`<td style="font-family:Fraunces;font-weight:700">${rt}</td></tr>`;});
+  h+=`<tr style="border-top:2px solid var(--line)"><td><b>Total</b></td>`+prods.map(p=>`<td style="font-weight:700">${colTot[p]||0}</td>`).join('')+`<td style="font-family:Fraunces;font-weight:900">${grand}</td></tr>`;
+  h+='</tbody></table>';wrap.innerHTML=h;
+}
+function rFin(){
+  const it=document.getElementById('in-rows');it.innerHTML='';
+  document.getElementById('in-empty').style.display=DB.income.length?'none':'block';let inc=0;
+  [...DB.income].map((r,i)=>({r,i})).sort((a,b)=>(b.r.date||'').localeCompare(a.r.date||'')).forEach(({r,i})=>{inc+=+r.amt||0;const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="font-size:11.5px;color:var(--ink-soft)">${esc(r.date||'')}</td><td><b>${esc(r.name||'—')}</b></td><td>${esc(r.prod||'')}</td>
+      <td style="font-family:Fraunces;font-weight:600">${dzd(r.amt||0)}</td>
+      <td><button class="del" data-k="incd" data-i="${i}">×</button></td>`;it.appendChild(tr);});
+  const ft=document.getElementById('fee-rows');ft.innerHTML='';
+  document.getElementById('fee-empty').style.display=DB.fees.length?'none':'block';let fee=0;
+  [...DB.fees].map((r,i)=>({r,i})).sort((a,b)=>(b.r.date||'').localeCompare(a.r.date||'')).forEach(({r,i})=>{fee+=+r.amt||0;const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="font-size:11.5px;color:var(--ink-soft)">${esc(r.date||'')}</td><td>${esc(r.item||'')}</td><td style="font-family:Fraunces;font-weight:600;color:var(--rose)">−${dzd(r.amt||0)}</td>
+      <td style="font-size:11.5px;color:var(--ink-soft)">${esc(r.remark||'')}</td>
+      <td><button class="del" data-k="fed" data-i="${i}">×</button></td>`;ft.appendChild(tr);});
+  const pt=document.getElementById('pf-rows');pt.innerHTML='';let perm=0;
+  DB.permFees.forEach((r,i)=>{perm+=+r.amt||0;const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${esc(r.item||'')}</td><td style="font-family:Fraunces;font-weight:600">${dzd(r.amt||0)}</td>
+      <td style="font-size:11.5px;color:var(--ink-soft)">${esc(r.remark||'')}</td>
+      <td><button class="del" data-k="pfd" data-i="${i}">×</button></td>`;pt.appendChild(tr);});
+  document.getElementById('pf-total').textContent=dzd(perm);
+  const xt=document.getElementById('tx-rows');xt.innerHTML='';DB.taxes=DB.taxes||[];let tax=0;
+  [...DB.taxes].map((r,i)=>({r,i})).sort((a,b)=>(b.r.month||'').localeCompare(a.r.month||'')).forEach(({r,i})=>{tax+=+r.amt||0;const tr=document.createElement('tr');
+    tr.innerHTML=`<td><b>${esc(r.type||'')}</b></td><td>${esc(r.month||'')}</td><td style="font-family:Fraunces;font-weight:600;color:var(--rose)">−${dzd(r.amt||0)}</td>
+      <td><button class="del" data-k="txd" data-i="${i}">×</button></td>`;xt.appendChild(tr);});
+  document.getElementById('tx-total').textContent=dzd(tax);
+  const spent=fee+perm+tax,net=inc-spent;
+  document.getElementById('f-in').textContent=dzd(inc);
+  document.getElementById('f-out').textContent=dzd(spent);
+  const fn=document.getElementById('f-net');fn.textContent=(net<0?'−':'')+dzd(Math.abs(net));fn.style.color=net<0?'var(--rose)':'var(--green)';
+  document.getElementById('f-fix').textContent=dzd(perm);
+  // receivables
+  const rt=document.getElementById('rcv-rows');rt.innerHTML='';let owedD=0,owedE=0;
+  const fc=(a,c)=>c==='EUR'?eur(a):dzd(a);
+  [...DB.receivables].map((r,i)=>({r,i})).sort((a,b)=>(a.r.due||'9999').localeCompare(b.r.due||'9999')).forEach(({r,i})=>{
+    const cur=r.cur||'DZD';const bal=(+r.total||0)-(+r.paid||0);if(bal>0){if(cur==='EUR')owedE+=bal;else owedD+=bal;}const dl=r.due?daysTo(r.due):null;
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(r.name||'')}</b></td><td>${esc(r.item||'')}</td>
+      <td><span class="pill src">${esc(cur)}</span></td>
+      <td>${fc(r.total||0,cur)}</td><td>${fc(r.paid||0,cur)}</td>
+      <td style="font-family:Fraunces;font-weight:600;color:${bal>0?'var(--gold)':'var(--green)'}">${fc(bal,cur)}</td>
+      <td>${r.due?esc(r.due)+(dl!=null&&bal>0?` <span class="days ${dl<0?'d-red':dl<7?'d-amber':'d-green'}">${dl<0?'overdue':dl+'d'}</span>`:''):'—'}</td>
+      <td><button class="del" data-k="rcvd" data-i="${i}">×</button></td>`;rt.appendChild(tr);});
+  document.getElementById('rcv-total-out').textContent=dzd(owedD);
+  document.getElementById('rcv-total-eur').textContent=eur(owedE);
+  // refunds
+  const rf=document.getElementById('ref-rows');rf.innerHTML='';const risk={};
+  DB.refunds.forEach((r,i)=>{if(r.status!=='Refunded'){const c=r.cur||'DZD';risk[c]=(risk[c]||0)+(+r.amt||0);}
+    const sc=r.status==='Refunded'?'s-done':r.status==='Stuck'?'p-hi':'p-md';const sym=r.cur==='EUR'?'€':r.cur==='USD'?'$':r.cur==='GBP'?'£':'';
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(r.name||'')}</b></td>
+      <td style="font-family:Fraunces;font-weight:600">${sym}${dzd(r.amt||0)}${r.cur==='DZD'?' DA':''}</td>
+      <td style="font-size:11.5px">${esc(r.reason||'')}</td>
+      <td><span class="pill ${sc}">${esc(r.status||'')}</span></td>
+      <td><button class="del" data-k="refd" data-i="${i}">×</button></td>`;rf.appendChild(tr);});
+  document.getElementById('ref-risk').textContent=Object.keys(risk).length?Object.keys(risk).map(c=>{const sym=c==='EUR'?'€':c==='USD'?'$':c==='GBP'?'£':'';return sym+dzd(risk[c])+(c==='DZD'?' DA':'');}).join(' · '):'0';
+  // unit economics
+  const fx=+DB.surv.fx||155;const dep=DB.departures.filter(d=>d.status!=='Cancelled');const dc=dep.length;
+  const feeHT=dep.reduce((a,d)=>a+(DB.vatIncl?(+d.fee||0)/1.19:(+d.fee||0)),0);
+  const commDZD=dep.reduce((a,d)=>{const c=+d.comm||0;return a+((d.cur||'EUR')==='DZD'?c:c*fx);},0);
+  const mk=dep.reduce((a,d)=>a+(+d.markup||0),0);
+  const gross=dc?(feeHT+commDZD+mk)/dc:0;
+  const mkSpend=DB.campaigns.reduce((a,c)=>a+(+c.spend||0),0);const mkEnr=DB.campaigns.reduce((a,c)=>a+(+c.enr||0),0);
+  const cac=mkEnr>0?mkSpend/mkEnr:(dc?mkSpend/dc:0);
+  document.getElementById('ue-gross').textContent=dzd(gross);
+  document.getElementById('ue-cac').textContent=dzd(cac);
+  const uen=document.getElementById('ue-net');uen.textContent=(gross-cac<0?'−':'')+dzd(Math.abs(gross-cac));uen.style.color=(gross-cac)<0?'var(--rose)':'var(--green)';
+  document.getElementById('ue-count').textContent=dc;
+  bind();}
+/* KPI */
+function rKpi(){const tb=document.getElementById('w-rows');tb.innerHTML='';
+  document.getElementById('w-empty').style.display=DB.kpis.length?'none':'block';
+  [...DB.kpis].map((k,i)=>({k,i})).sort((a,b)=>(b.k.week||'').localeCompare(a.k.week||'')).forEach(({k,i})=>{
+    const rate=k.leads>0?Math.round(k.enr/k.leads*100):0;
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(k.week||'')}</td><td>${k.leads||0}</td><td>${k.cons||0}</td><td><b>${k.enr||0}</b></td>
+      <td>${dzd(k.rev||0)}</td><td><span class="days ${rate>=15?'d-green':rate>=8?'d-amber':'d-red'}">${rate}%</span></td>
+      <td><button class="del" data-k="wd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  // targets vs actuals (current month, from weekly logs)
+  const ym=new Date().toISOString().slice(0,7);
+  const cur=DB.kpis.filter(k=>(k.week||'').slice(0,7)===ym);
+  const aL=cur.reduce((a,k)=>a+(+k.leads||0),0),aE=cur.reduce((a,k)=>a+(+k.enr||0),0),aR=cur.reduce((a,k)=>a+(+k.rev||0),0);
+  const t=DB.targets||{};
+  const barRow=(label,actual,target,money)=>{const pct=target>0?Math.min(100,Math.round(actual/target*100)):0;
+    const col=pct>=100?'var(--green)':pct>=60?'var(--gold)':'var(--rose)';
+    return `<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span><b>${label}</b></span><span style="color:var(--ink-soft)">${money?dzd(actual):actual} / ${target>0?(money?dzd(target):target):'—'} ${target>0?`(${pct}%)`:''}</span></div><div style="background:#eee7d6;border-radius:8px;height:9px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${col}"></div></div></div>`;};
+  document.getElementById('tg-bars').innerHTML=barRow('Leads',aL,+t.leads||0,false)+barRow('Enrolments',aE,+t.enr||0,false)+barRow('Revenue (DZD)',aR,+t.rev||0,true);
+  // monthly trend
+  const mo={};DB.kpis.forEach(k=>{const m=(k.week||'').slice(0,7);if(!m)return;mo[m]=mo[m]||{l:0,c:0,e:0,r:0};mo[m].l+=+k.leads||0;mo[m].c+=+k.cons||0;mo[m].e+=+k.enr||0;mo[m].r+=+k.rev||0;});
+  const months=Object.keys(mo).sort().reverse();
+  document.getElementById('mt-empty').style.display=months.length?'none':'block';
+  const mt=document.getElementById('mt-rows');mt.innerHTML='';
+  months.forEach(m=>{const d=mo[m];const tr=document.createElement('tr');
+    tr.innerHTML=`<td><b>${m}</b></td><td>${d.l}</td><td>${d.c}</td><td>${d.e}</td><td style="font-family:Fraunces;font-weight:600">${dzd(d.r)}</td>`;mt.appendChild(tr);});
+  const maxR=Math.max(1,...months.map(m=>mo[m].r));
+  document.getElementById('mt-bars').innerHTML=months.slice(0,6).reverse().map(m=>{const w=Math.round(mo[m].r/maxR*100);
+    return `<div style="margin:6px 0"><div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px">${m} — ${dzd(mo[m].r)} DZD</div><div style="background:#eee7d6;border-radius:6px;height:14px;overflow:hidden"><div style="width:${w}%;height:100%;background:var(--teal)"></div></div></div>`;}).join('');
+  bind();}
+/* PIPELINE */
+function rPipe(){const tb=document.getElementById('pl-rows');tb.innerHTML='';
+  document.getElementById('pl-empty').style.display=DB.pipeline.length?'none':'block';
+  const OPEN=["New","Contacted","Qualified","Proposal"];const ST=["New","Contacted","Qualified","Proposal","Closed Won","Closed Lost"];
+  DB.pipeline.forEach((l,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(l.name)}</b><div style="font-size:11px;color:var(--ink-soft)">${esc(l.contact||'')}</div></td>
+    <td><span class="pill src">${esc(l.source)}</span></td><td>${esc(l.prog)}</td><td>${esc(l.owner)}</td>
+    <td style="font-family:Fraunces;font-weight:600">${eur(l.value||0)}</td>
+    <td><select class="inline" data-i="${i}" data-k="ls">${ST.map(s=>`<option ${s===l.stage?'selected':''}>${s}</option>`).join('')}</select></td>
+    <td><button class="del" data-k="ld" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  const total=DB.pipeline.length,won=DB.pipeline.filter(l=>l.stage==='Closed Won');
+  const wonV=won.reduce((a,l)=>a+(+l.value||0),0),openV=DB.pipeline.filter(l=>OPEN.includes(l.stage)).reduce((a,l)=>a+(+l.value||0),0);
+  document.getElementById('p-total').textContent=total;
+  document.getElementById('p-conv').textContent=(total?Math.round(won.length/total*100):0)+'%';
+  document.getElementById('p-open').textContent=eur(openV);document.getElementById('p-won').textContent=eur(wonV);
+  document.getElementById('p-wonc').textContent=won.length+' enrol.';bind();}
+/* SURVIVAL */
+function rSurv(){const tb=document.getElementById('sv-rows');tb.innerHTML='';const s=DB.surv;
+  s.progs.forEach((p,i)=>{const profit=(+p.units||0)*(+p.m||0)*(+s.fx||0);
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${p.name}</td>
+      <td><input type="number" style="width:60px" data-i="${i}" data-k="su" value="${p.units}"></td>
+      <td><input type="number" style="width:60px" data-i="${i}" data-k="sm" value="${p.m}"></td>
+      <td><b>${dzd(profit)}</b></td>`;tb.appendChild(tr);});
+  tb.querySelectorAll('input').forEach(inp=>inp.oninput=e=>{s.progs[e.target.dataset.i][e.target.dataset.k==='su'?'units':'m']=+e.target.value||0;save();rSurv();rHome();});
+  const costs=(+s.fixed||0)+(+s.over||0);
+  const abroad=s.progs.reduce((a,p)=>a+(+p.units||0)*(+p.m||0)*(+s.fx||0),0);const gp=abroad+(+s.local||0);
+  const result=gp-costs,burn=-result;const units=s.progs.reduce((a,p)=>a+(+p.units||0),0);
+  const am=units?abroad/units:s.progs.reduce((a,p)=>a+(+p.m||0),0)/s.progs.length*(+s.fx||0);
+  const be=am>0?Math.ceil(costs/am):0;
+  document.getElementById('sv-res').textContent=(result<0?'−':'+')+dzd(Math.abs(result));
+  document.getElementById('sv-res').style.color=result<0?'var(--rose)':'var(--green)';
+  document.getElementById('sv-res-s').textContent=result<0?'monthly burn':'monthly profit';
+  document.getElementById('sv-be').textContent=be;
+  const rn=document.getElementById('sv-run');
+  if(result>=0){rn.textContent='∞';rn.style.color='var(--green)';document.getElementById('sv-run-s').textContent='profitable';}
+  else if(s.cash){const m=s.cash/burn;rn.textContent=m<1?Math.round(m*4.3)+'w':m.toFixed(1);rn.style.color=m<2?'var(--rose)':m<4?'var(--gold)':'var(--ink)';document.getElementById('sv-run-s').textContent=m<1?'weeks left':'months left';}
+  else{rn.textContent='—';rn.style.color='var(--ink)';document.getElementById('sv-run-s').textContent='enter cash';}
+  const v=document.getElementById('sv-verdict');v.className='verdict';
+  if(result>=0){v.classList.add('green');document.getElementById('sv-t').textContent='Above water ✓';
+    document.getElementById('sv-s').textContent=`Covering costs with ~${units} enrolments/mo. Protect it — watch the FX rate.`;}
+  else{const gap=Math.max(0,be-units);
+    if(s.cash&&s.cash/burn<2){v.classList.add('red');document.getElementById('sv-t').textContent='Critical — short runway';}
+    else{v.classList.add('amber');document.getElementById('sv-t').textContent='Losing money each month';}
+    document.getElementById('sv-s').innerHTML=`Short ${dzd(burn)} DZD/month. Break-even ≈ ${be} abroad enrolments/mo — about ${gap} more than now (${units}).`;}
+  const off=s.progs.reduce((a,p)=>a+(+p.units||0)*(+p.m||0),0)*155,par=s.progs.reduce((a,p)=>a+(+p.units||0)*(+p.m||0),0)*278;
+  document.getElementById('sv-leak').innerHTML=units>0
+    ?`⚠️ FX: same enrolments = ${dzd(off)} DZD at official 155, but ${dzd(par)} DZD of buying power at parallel 278. If you pay partners in euros, the higher rate is your real cost.`
+    :`Two euro rates exist: official ~155, parallel ~278. If you collect dinars and pay partners in euros, the parallel rate is your true cost — set the rate to what you actually transact at.`;}
+/* HOME */
+function rHome(){
+  const urg=DB.deadlines.filter(d=>{const x=daysTo(d.date);return x<=14;}).length;
+  document.getElementById('h-urgent').textContent=urg;
+  const openT=DB.tasks.filter(t=>t.status!=='Done');
+  document.getElementById('h-tasks').textContent=openT.length;
+  document.getElementById('h-tasks-hi').textContent=openT.filter(t=>t.pri==='High').length+' high';
+  const OPEN=["New","Contacted","Qualified","Proposal"];const total=DB.pipeline.length;
+  const won=DB.pipeline.filter(l=>l.stage==='Closed Won').length;
+  document.getElementById('h-pipe').textContent=eur(DB.pipeline.filter(l=>OPEN.includes(l.stage)).reduce((a,l)=>a+(+l.value||0),0));
+  document.getElementById('h-conv').textContent=(total?Math.round(won/total*100):0)+'% conv.';
+  let inc=0;DB.income.forEach(r=>inc+=+r.amt||0);let sp=0;DB.fees.forEach(r=>sp+=+r.amt||0);DB.permFees.forEach(r=>sp+=+r.amt||0);
+  const net=inc-sp;document.getElementById('h-cash').textContent=(net<0?'−':'')+dzd(Math.abs(net));
+  const s=DB.surv;const costs=(+s.fixed||0)+(+s.over||0);const gp=s.progs.reduce((a,p)=>a+(+p.units||0)*(+p.m||0)*(+s.fx||0),0)+(+s.local||0);
+  const burn=costs-gp;const hr=document.getElementById('h-run');
+  if(burn<=0){hr.textContent='∞';document.getElementById('h-run-s').textContent='profitable';}
+  else if(s.cash){const m=s.cash/burn;hr.textContent=m<1?Math.round(m*4.3)+'w':m.toFixed(1);document.getElementById('h-run-s').textContent=m<1?'weeks left':'months left';hr.style.color=m<2?'var(--rose)':'var(--ink)';}
+  else{hr.textContent='—';document.getElementById('h-run-s').textContent='enter in Survival';}
+  const next=document.getElementById('h-next');next.innerHTML='';
+  const items=[...DB.tasks.filter(t=>t.status!=='Done').map(t=>({l:t.title,d:t.due?daysTo(t.due):999,o:t.owner})),
+    ...DB.deadlines.map(d=>({l:d.item,d:daysTo(d.date),o:d.owner}))].sort((a,b)=>a.d-b.d).slice(0,7);
+  items.forEach(it=>{const li=document.createElement('li');const c=it.d<3?'d-red':it.d<7?'d-amber':'d-green';
+    li.innerHTML=`<span>${esc(it.l)}</span><span class="meta"><span class="days ${c}">${it.d<0?'overdue':it.d+'d'}</span> · ${esc(it.o||'')}</span>`;next.appendChild(li);});
+  if(!items.length)next.innerHTML='<div class="empty">All clear.</div>';
+  const pw=document.getElementById('h-part');pw.innerHTML='';
+  DB.partners.filter(p=>p.status!=='Active').forEach(p=>{const li=document.createElement('li');
+    li.innerHTML=`<span><b>${esc(p.name)}</b> — ${esc(p.act||'')}</span><span class="meta">${esc(p.status)}</span>`;pw.appendChild(li);});
+  if(!pw.children.length)pw.innerHTML='<div class="empty">All partners active.</div>';}
+
+/* DEPARTURES & COMMISSIONS */
+function rDep(){
+  const tb=document.getElementById('r-rows');tb.innerHTML='';
+  document.getElementById('r-empty').style.display=DB.departures.length?'none':'block';
+  const ST=["Enrolled","Departed","Invoiced","Received","Cancelled"];
+  DB.departures.forEach((d,i)=>{const cur=d.cur||'EUR';const sym=cur==='EUR'?'€':cur==='USD'?'$':'';
+    const sc=d.status==='Received'?'s-done':d.status==='Cancelled'?'p-hi':d.status==='Invoiced'?'s-prog':'s-todo';
+    const tr=document.createElement('tr');tr.innerHTML=`<td><b>${esc(d.student||'—')}</b></td><td>${esc(d.prog||'')}</td>
+      <td>${d.fee?dzd(d.fee)+' DA':'—'}</td>
+      <td>${d.comm?sym+dzd(d.comm)+(cur==='DZD'?' DA':''):'—'}</td>
+      <td>${d.markup?dzd(d.markup)+' DA':'—'}</td>
+      <td>${esc(d.date||'')}</td>
+      <td><select class="inline ${sc}" data-i="${i}" data-k="rs">${ST.map(s=>`<option ${s===d.status?'selected':''}>${s}</option>`).join('')}</select></td>
+      <td><button class="del" data-k="rd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  const act=DB.departures.filter(d=>d.status!=='Cancelled');
+  document.getElementById('r-count').textContent=act.length;
+  const base=act.reduce((a,d)=>a+(+d.fee||0),0);let ttc,ht,vat;
+  if(DB.vatIncl){ttc=base;ht=base/1.19;vat=ttc-ht;}else{ht=base;vat=base*0.19;ttc=base*1.19;}
+  document.getElementById('r-fees').textContent=dzd(ttc);
+  document.getElementById('r-fees-s').textContent=`DZD TTC · VAT ${dzd(vat)} · HT ${dzd(ht)}`;
+  const sc=(arr,c)=>arr.filter(d=>(d.cur||'EUR')===c).reduce((a,d)=>a+(+d.comm||0),0);
+  const rec=act.filter(d=>d.status==='Received');
+  const eE=sc(act,'EUR'),rE=sc(rec,'EUR'),eU=sc(act,'USD'),rU=sc(rec,'USD'),eD=sc(act,'DZD'),rD=sc(rec,'DZD');
+  document.getElementById('r-exp').textContent='€'+dzd(eE);
+  document.getElementById('r-rec').textContent='€'+dzd(rE);
+  document.getElementById('r-out').textContent='€'+dzd(eE-rE);
+  const extra=[];if(eU)extra.push('$'+dzd(eU)+' exp · $'+dzd(rU)+' rec');if(eD)extra.push(dzd(eD)+' DA exp · '+dzd(rD)+' rec');
+  document.getElementById('r-exp-s').textContent=extra.join(' · ');
+  setVat();bind();
+}
+function rLocal(){
+  const tb=document.getElementById('lp-rows');tb.innerHTML='';
+  DB.localPkgs.forEach((p,i)=>{const rev=(+p.price||0)*(+p.count||0);
+    const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(p.name)}</td><td>${dzd(p.price||0)}</td>
+      <td><input type="number" style="width:62px" data-i="${i}" data-k="lpc" value="${p.count||0}"></td>
+      <td><b>${dzd(rev)}</b></td><td><button class="del" data-k="lpd" data-i="${i}">×</button></td>`;tb.appendChild(tr);});
+  tb.querySelectorAll('input[data-k="lpc"]').forEach(inp=>inp.oninput=e=>{DB.localPkgs[e.target.dataset.i].count=+e.target.value||0;save();rLocal();});
+  document.getElementById('lp-total').textContent=dzd(DB.localPkgs.reduce((a,p)=>a+(+p.price||0)*(+p.count||0),0));
+  bind();
+}
+function setVat(){document.getElementById('vat-incl').classList.toggle('on',!!DB.vatIncl);document.getElementById('vat-excl').classList.toggle('on',!DB.vatIncl);}
+
+function bind(){
+  document.querySelectorAll('[data-k]').forEach(el=>{const k=el.dataset.k,i=+el.dataset.i;
+    if(['td','dd','pd','md','wd','ld','rd','lpd','incd','fed','pfd','std','seld','grpd','cmpd','vcd','rcvd','refd','txd','enrd'].includes(k))el.onclick=()=>{const m={td:'tasks',dd:'deadlines',pd:'partners',md:'finance',wd:'kpis',ld:'pipeline',rd:'departures',lpd:'localPkgs',incd:'income',fed:'fees',pfd:'permFees',std:'staff',seld:'sellers',grpd:'groups',cmpd:'campaigns',vcd:'cases',rcvd:'receivables',refd:'refunds',txd:'taxes',enrd:'enrolls'}[k];DB[m].splice(i,1);save();renderAll();};
+    else if(['ts','ps','ls','rs','vca'].includes(k))el.onchange=e=>{if(k==='ts')DB.tasks[i].status=e.target.value;if(k==='ps')DB.partners[i].status=e.target.value;if(k==='ls')DB.pipeline[i].stage=e.target.value;if(k==='rs')DB.departures[i].status=e.target.value;if(k==='vca')DB.cases[i].ans=e.target.value;save();renderAll();};
+  });
+}
+const gv=id=>document.getElementById(id).value, clr=ids=>ids.forEach(i=>document.getElementById(i).value='');
+/* adders */
+document.getElementById('t-add').onclick=()=>{const v=gv('t-title').trim();if(!v)return;DB.tasks.unshift({title:v,owner:gv('t-owner'),due:gv('t-due'),pri:gv('t-pri'),status:'To do'});clr(['t-title','t-due']);save();renderAll();};
+document.getElementById('d-add').onclick=()=>{const v=gv('d-item').trim();if(!v)return;DB.deadlines.push({item:v,cat:gv('d-cat'),date:gv('d-date'),owner:gv('d-owner')});clr(['d-item','d-date']);save();renderAll();};
+document.getElementById('pa-add').onclick=()=>{const v=gv('pa-name').trim();if(!v)return;DB.partners.push({name:v,status:gv('pa-stat'),product:gv('pa-prod'),poc:gv('pa-poc'),contact:gv('pa-contact'),act:gv('pa-act'),owner:gv('pa-owner')});clr(['pa-name','pa-prod','pa-poc','pa-contact','pa-act']);save();renderAll();};
+document.getElementById('w-add').onclick=()=>{const w=gv('w-week');if(!w)return;DB.kpis.push({week:w,leads:+gv('w-leads')||0,cons:+gv('w-cons')||0,enr:+gv('w-enr')||0,rev:+gv('w-rev')||0});clr(['w-week','w-leads','w-cons','w-enr','w-rev']);save();renderAll();};
+document.getElementById('r-add').onclick=()=>{const v=gv('r-student').trim();if(!v)return;DB.departures.unshift({student:v,prog:gv('r-prog'),fee:+gv('r-fee')||0,cur:gv('r-cur'),comm:+gv('r-comm')||0,markup:+gv('r-markup')||0,date:gv('r-date'),status:'Enrolled'});clr(['r-student','r-prog','r-comm','r-markup','r-date']);save();renderAll();};
+document.getElementById('lp-add').onclick=()=>{const v=gv('lp-name').trim();if(!v)return;DB.localPkgs.push({name:v,price:+gv('lp-price')||0,count:0});clr(['lp-name','lp-price']);save();renderAll();};
+document.getElementById('vat-incl').onclick=()=>{DB.vatIncl=true;save();rDep();};
+document.getElementById('vat-excl').onclick=()=>{DB.vatIncl=false;save();rDep();};
+document.getElementById('in-add').onclick=()=>{const v=gv('in-name').trim();if(!v&&!gv('in-amt'))return;DB.income.unshift({date:gv('in-date')||isoIn(0),name:v,prod:gv('in-prod'),amt:+gv('in-amt')||0});clr(['in-date','in-name','in-prod','in-amt']);save();renderAll();};
+document.getElementById('fee-add').onclick=()=>{const v=gv('fee-item').trim();if(!v)return;DB.fees.unshift({date:gv('fee-date')||isoIn(0),item:v,amt:+gv('fee-amt')||0,remark:gv('fee-rem')});clr(['fee-date','fee-item','fee-amt','fee-rem']);save();renderAll();};
+document.getElementById('pf-add').onclick=()=>{const v=gv('pf-item').trim();if(!v)return;DB.permFees.push({item:v,amt:+gv('pf-amt')||0,remark:gv('pf-rem')});clr(['pf-item','pf-amt','pf-rem']);save();renderAll();};
+document.getElementById('tx-add').onclick=()=>{const v=+gv('tx-amt');DB.taxes=DB.taxes||[];if(!v)return;DB.taxes.push({type:gv('tx-type'),month:gv('tx-month'),amt:v});clr(['tx-month','tx-amt']);save();renderAll();};
+document.getElementById('st-add').onclick=()=>{const v=gv('st-name').trim();if(!v)return;DB.staff.push({name:v,role:gv('st-role'),sal:+gv('st-sal')||0,decl:+gv('st-decl')||0,start:gv('st-start'),end:gv('st-end'),rem:gv('st-rem')});clr(['st-name','st-role','st-sal','st-decl','st-start','st-end','st-rem']);save();renderAll();};
+document.getElementById('sl-add').onclick=()=>{const v=gv('sl-name').trim();if(!v)return;DB.sellers.unshift({name:v,month:gv('sl-month'),calls:+gv('sl-calls')||0,cons:+gv('sl-cons')||0,book:+gv('sl-book')||0});clr(['sl-name','sl-month','sl-calls','sl-cons','sl-book']);save();renderAll();};
+document.getElementById('gr-add').onclick=()=>{const v=gv('gr-name').trim();if(!v)return;DB.groups.push({name:v,prog:gv('gr-prog'),teacher:gv('gr-teacher'),day:gv('gr-day'),time:gv('gr-time'),enr:+gv('gr-enr')||0,cap:+gv('gr-cap')||0});clr(['gr-name','gr-prog','gr-teacher','gr-day','gr-time','gr-enr','gr-cap']);save();renderAll();};
+document.getElementById('en-add').onclick=()=>{const v=gv('en-name').trim();if(!v)return;DB.enrolls=DB.enrolls||[];DB.enrolls.push({name:v,date:gv('en-date'),pkg:gv('en-pkg'),price:+gv('en-price')||0});clr(['en-name','en-date','en-pkg','en-price']);save();renderAll();};
+document.getElementById('cm-add').onclick=()=>{const v=gv('cm-name').trim();if(!v)return;DB.campaigns.unshift({name:v,chan:gv('cm-chan'),date:gv('cm-date'),spend:+gv('cm-spend')||0,leads:+gv('cm-leads')||0,enr:+gv('cm-enr')||0});clr(['cm-name','cm-date','cm-spend','cm-leads','cm-enr']);save();renderAll();};
+document.getElementById('vc-add').onclick=()=>{const d=gv('vc-dest').trim();if(!d)return;DB.cases.push({dest:d,num:+gv('vc-num')||0,ans:gv('vc-ans'),note:gv('vc-note')});clr(['vc-dest','vc-num','vc-note']);save();renderAll();};
+document.getElementById('rcv-add').onclick=()=>{const v=gv('rcv-name').trim();if(!v)return;DB.receivables.push({name:v,item:gv('rcv-item'),cur:gv('rcv-cur'),total:+gv('rcv-total')||0,paid:+gv('rcv-paid')||0,due:gv('rcv-due')});clr(['rcv-name','rcv-item','rcv-total','rcv-paid','rcv-due']);save();renderAll();};
+document.getElementById('ref-add').onclick=()=>{const v=gv('ref-name').trim();if(!v)return;DB.refunds.push({name:v,amt:+gv('ref-amt')||0,cur:gv('ref-cur'),reason:gv('ref-reason'),status:gv('ref-stat')});clr(['ref-name','ref-amt','ref-reason']);save();renderAll();};
+['tg-leads','tg-enr','tg-rev'].forEach(id=>{document.getElementById(id).oninput=e=>{const k=id.split('-')[1];DB.targets[k]=+e.target.value||0;save();rKpi();};});
+document.getElementById('pl-prog').onchange=e=>{const v=e.target.selectedOptions[0].dataset.v;if(v!==undefined)document.getElementById('pl-val').value=v;};
+document.getElementById('pl-add').onclick=()=>{const v=gv('pl-name').trim();if(!v)return;DB.pipeline.unshift({name:v,contact:gv('pl-contact'),source:gv('pl-src'),prog:document.getElementById('pl-prog').selectedOptions[0].text.split(' — ')[0],value:+gv('pl-val')||0,owner:gv('pl-owner'),stage:'New'});clr(['pl-name','pl-contact']);save();renderAll();};
+/* survival inputs */
+['sv-cash','sv-fixed','sv-over','sv-local','sv-fx'].forEach(id=>{document.getElementById(id).oninput=e=>{const k=id.split('-')[1];DB.surv[k]=e.target.value===''?(k==='cash'?null:0):+e.target.value;save();rSurv();rHome();};});
+/* nav */
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById(b.dataset.t).classList.add('show');
+  document.querySelector('.main').scrollTop=0;
+});
+document.querySelectorAll('#office button').forEach(b=>b.onclick=()=>{STORE.office=b.dataset.o;DB=STORE.profiles[STORE.office];save();setOffice();syncInputs();renderAll();});
+function setupFilters(){
+  document.querySelectorAll('tbody[id$="-rows"]').forEach(tb=>{
+    const tbl=tb.closest('table');if(!tbl)return;const wrap=tbl.parentElement;
+    if(wrap.previousElementSibling&&wrap.previousElementSibling.classList&&wrap.previousElementSibling.classList.contains('tfilter'))return;
+    const inp=document.createElement('input');inp.type='text';inp.className='tfilter';inp.placeholder='Filter\u2026';inp.dataset.target=tb.id;inp.oninput=applyFilters;
+    wrap.parentElement.insertBefore(inp,wrap);
+  });
+}
+function applyFilters(){
+  document.querySelectorAll('.tfilter').forEach(inp=>{
+    const tb=document.getElementById(inp.dataset.target);if(!tb)return;const q=inp.value.trim().toLowerCase();
+    tb.querySelectorAll('tr').forEach(tr=>{tr.style.display=(!q||tr.textContent.toLowerCase().includes(q))?'':'none';});
+  });
+}
+setupFilters();
+load();
+</script>
